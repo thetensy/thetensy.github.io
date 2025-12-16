@@ -2,58 +2,56 @@
 
 // DOM Ready
 document.addEventListener('DOMContentLoaded', function() {
-  initCursorGlow();
   initCategoryFilter();
   initStyleTags();
   initModal();
   initProductCards();
+  initMobileUI();
 });
 
-// ===== 鼠標光暈效果 =====
-function initCursorGlow() {
-  // 創建光暈元素
-  const glow = document.createElement('div');
-  glow.className = 'cursor-glow';
-  glow.style.cssText = `
-    position: fixed;
-    pointer-events: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 107, 107, 0.3) 0%, rgba(78, 205, 196, 0.2) 50%, transparent 70%);
-    transform: translate(-50%, -50%);
-    z-index: 9998;
-    transition: opacity 0.3s ease;
-    mix-blend-mode: screen;
-  `;
+// ===== 手機版 UI =====
+function initMobileUI() {
+  // 顯示手機版篩選按鈕
+  const mobileOnly = document.querySelector('.mobile-only');
+  if (mobileOnly && window.innerWidth <= 768) {
+    mobileOnly.style.display = 'block';
+  }
   
-  const glowLarge = document.createElement('div');
-  glowLarge.className = 'cursor-glow-large';
-  glowLarge.style.cssText = `
-    position: fixed;
-    pointer-events: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 205, 86, 0.15) 0%, rgba(78, 205, 196, 0.1) 40%, transparent 70%);
-    transform: translate(-50%, -50%);
-    z-index: 9997;
-    transition: all 0.15s ease-out;
-  `;
-  
-  document.body.appendChild(glowLarge);
-  document.body.appendChild(glow);
-  
-  // 跟隨鼠標
-  document.addEventListener('mousemove', function(e) {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
+  // 監聽視窗大小變化
+  window.addEventListener('resize', function() {
+    const mobileOnly = document.querySelector('.mobile-only');
+    if (mobileOnly) {
+      mobileOnly.style.display = window.innerWidth <= 768 ? 'block' : 'none';
+    }
     
-    setTimeout(function() {
-      glowLarge.style.left = e.clientX + 'px';
-      glowLarge.style.top = e.clientY + 'px';
-    }, 50);
+    // 重置選單狀態
+    if (window.innerWidth > 768) {
+      const nav = document.getElementById('mainNav');
+      const sidebar = document.getElementById('sidebar');
+      if (nav) nav.classList.remove('active');
+      if (sidebar) sidebar.classList.remove('active');
+    }
   });
+}
+
+// ===== 手機版漢堡選單 =====
+function toggleMobileMenu() {
+  const nav = document.getElementById('mainNav');
+  if (nav) {
+    nav.classList.toggle('active');
+  }
+}
+
+// ===== 手機版側邊欄篩選 =====
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const btn = document.querySelector('.mobile-filter-toggle');
+  if (sidebar) {
+    sidebar.classList.toggle('active');
+    if (btn) {
+      btn.textContent = sidebar.classList.contains('active') ? '🎨 收起篩選 ▲' : '🎨 篩選分類 ▼';
+    }
+  }
 }
 
 // ===== 分類篩選 (設計列表頁) =====
