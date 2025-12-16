@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>設計列表 | 添喜設計 Tensy Design</title>
+  <meta name="description" content="瀏覽添喜設計的所有設計模板，Logo設計、名片設計、DM傳單，透明價格立即選購。">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="rainbow-bar"></div>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="添喜設計">
+        <div class="logo-text">
+          <h1>添喜</h1>
+          <span>Fancy Brand Tensy Made</span>
+        </div>
+      </a>
+      
+      <nav class="nav">
+        <a href="index.html">首頁</a>
+        <a href="designs.html" class="active">設計列表</a>
+        <a href="about.html">關於添喜</a>
+        <a href="flow.html">下單流程</a>
+      </nav>
+      
+      <div class="header-actions">
+        <button class="btn btn-secondary">會員登入</button>
+        <a href="https://line.me/R/ti/p/@tensy" target="_blank" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.193 0-.378-.104-.481-.281l-2.432-3.308v2.962c0 .349-.282.63-.63.63-.345 0-.627-.281-.627-.63V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.478.281l2.439 3.308V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-5.741 0c0 .349-.282.63-.631.63-.345 0-.627-.281-.627-.63V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.63H4.917c-.345 0-.63-.281-.63-.63V8.108c0-.345.285-.63.63-.63.349 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+          LINE 諮詢
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="designs-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">產品分類</h3>
+        
+        <div class="category-item active" data-category="logo">
+          <div class="left">
+            <span class="emoji">🎨</span>
+            <span>Logo 設計</span>
+          </div>
+          <span class="count">48</span>
+        </div>
+        
+        <div class="category-item" data-category="card">
+          <div class="left">
+            <span class="emoji">💳</span>
+            <span>名片設計</span>
+          </div>
+          <span class="count">32</span>
+        </div>
+        
+        <div class="category-item" data-category="dm">
+          <div class="left">
+            <span class="emoji">📄</span>
+            <span>DM 傳單</span>
+          </div>
+          <span class="count">24</span>
+        </div>
+        
+        <div class="category-item" data-category="menu">
+          <div class="left">
+            <span class="emoji">🍽️</span>
+            <span>菜單設計</span>
+          </div>
+          <span class="count">18</span>
+        </div>
+        
+        <div class="category-item" data-category="website">
+          <div class="left">
+            <span class="emoji">🌐</span>
+            <span>網站設計</span>
+          </div>
+          <span class="count">12</span>
+        </div>
+        
+        <div class="category-item" data-category="social">
+          <div class="left">
+            <span class="emoji">📱</span>
+            <span>社群素材</span>
+          </div>
+          <span class="count">36</span>
+        </div>
+        
+        <div class="category-item" data-category="banner">
+          <div class="left">
+            <span class="emoji">🪧</span>
+            <span>招牌看板</span>
+          </div>
+          <span class="count">15</span>
+        </div>
+        
+        <div class="category-item" data-category="package">
+          <div class="left">
+            <span class="emoji">📦</span>
+            <span>包裝設計</span>
+          </div>
+          <span class="count">20</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">🎨 風格分類</h3>
+        <div class="style-tags">
+          <button class="style-tag" data-style="wordmark">✏️ 純文字風</button>
+          <button class="style-tag" data-style="pictorial">🖼️ 圖樣設計</button>
+          <button class="style-tag" data-style="badge">🛡️ 徽章風格</button>
+          <button class="style-tag" data-style="feminine">🌸 女性優雅</button>
+          <button class="style-tag" data-style="abstract">🔮 抽象/負形</button>
+          <button class="style-tag" data-style="fnb">🍜 餐飲美食</button>
+          <button class="style-tag" data-style="vintage">📻 復古懷舊</button>
+          <button class="style-tag" data-style="minimal">⬜ 極簡風格</button>
+          <button class="style-tag" data-style="handdrawn">🖌️ 手繪插畫</button>
+          <button class="style-tag" data-style="tech">🚀 科技未來</button>
+          <button class="style-tag" data-style="organic">🌿 自然有機</button>
+          <button class="style-tag" data-style="geometric">💎 幾何圖形</button>
+        </div>
+      </div>
+      
+      <div class="sidebar-pricing">
+        <h4>💰 Logo 設計價格</h4>
+        <ul>
+          <li>✦ 基礎版 <strong>NT$990</strong></li>
+          <li>✦ 專業版 <strong>NT$1,680</strong></li>
+          <li>✦ 客製化 <strong>NT$2,680+</strong></li>
+        </ul>
+        <button class="btn btn-teal" data-modal="pricing-modal">查看完整方案 →</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>🎨 Logo 設計</h1>
+          <p>點擊喜歡的模板，立即試算價格 ✨</p>
+        </div>
+        <select class="sort-select">
+          <option>價格：低到高</option>
+          <option>價格：高到低</option>
+          <option>最新上架</option>
+        </select>
+      </div>
+
+      <div class="product-grid">
+        <!-- Product 1 -->
+        <div class="product-card" data-id="1" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f0f4f0 0%, #e8ece8 100%);">
+            <span class="emoji">🍜</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>復古中式</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>南門美食閣</h3>
+            <p>復古中式</p>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-id="2" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f4f0f0 0%, #ece8e8 100%);">
+            <span class="emoji">📻</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>篆書風格</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>合宣茶舖</h3>
+            <p>篆書風格</p>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" data-id="3" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f0f0f4 0%, #e8e8ec 100%);">
+            <span class="emoji">⬜</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>日式極簡</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>花見咖啡</h3>
+            <p>日式極簡</p>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card" data-id="4" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f4f4f0 0%, #ecece8 100%);">
+            <span class="emoji">🔮</span>
+            <span class="product-price">NT$1,680</span>
+            <div class="product-overlay">
+              <p>水墨風格</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>山海軒</h3>
+            <p>水墨風格</p>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card" data-id="5" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f4f0f4 0%, #ece8ec 100%);">
+            <span class="emoji">🖌️</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>溫暖手繪</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>晨光烘焙</h3>
+            <p>溫暖手繪</p>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card" data-id="6" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f0f4f4 0%, #e8ecec 100%);">
+            <span class="emoji">🚀</span>
+            <span class="product-price">NT$1,680</span>
+            <div class="product-overlay">
+              <p>科技未來</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>雲端科技</h3>
+            <p>科技未來</p>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card" data-id="7" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f0f4f0 0%, #e8ece8 100%);">
+            <span class="emoji">🌿</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>自然有機</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>綠野鮮蔬</h3>
+            <p>自然有機</p>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card" data-id="8" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f4f0f4 0%, #ece8ec 100%);">
+            <span class="emoji">🔮</span>
+            <span class="product-price">NT$1,680</span>
+            <div class="product-overlay">
+              <p>霓虹風格</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>星月酒吧</h3>
+            <p>霓虹風格</p>
+          </div>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="product-card" data-id="9" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f0f0f4 0%, #e8e8ec 100%);">
+            <span class="emoji">⬜</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>東方禪意</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>禪心瑜珈</h3>
+            <p>東方禪意</p>
+          </div>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="product-card" data-id="10" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f4f4f0 0%, #ecece8 100%);">
+            <span class="emoji">💎</span>
+            <span class="product-price">NT$1,680</span>
+            <div class="product-overlay">
+              <p>幾何現代</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>築夢設計</h3>
+            <p>幾何現代</p>
+          </div>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product-card" data-id="11" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f4f0f0 0%, #ece8e8 100%);">
+            <span class="emoji">🌸</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>女性優雅</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>花漾美甲</h3>
+            <p>女性優雅</p>
+          </div>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product-card" data-id="12" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f0f4f0 0%, #e8ece8 100%);">
+            <span class="emoji">📻</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>復古懷舊</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>老街食堂</h3>
+            <p>復古懷舊</p>
+          </div>
+        </div>
+
+        <!-- Product 13 -->
+        <div class="product-card" data-id="13" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f0f4f4 0%, #e8ecec 100%);">
+            <span class="emoji">🌿</span>
+            <span class="product-price">NT$1,680</span>
+            <div class="product-overlay">
+              <p>清新自然</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>海風旅店</h3>
+            <p>清新自然</p>
+          </div>
+        </div>
+
+        <!-- Product 14 -->
+        <div class="product-card" data-id="14" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f4f4f0 0%, #ecece8 100%);">
+            <span class="emoji">🌿</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>有機風格</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>金穗農場</h3>
+            <p>有機風格</p>
+          </div>
+        </div>
+
+        <!-- Product 15 -->
+        <div class="product-card" data-id="15" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f0f0f4 0%, #e8e8ec 100%);">
+            <span class="emoji">🚀</span>
+            <span class="product-price">NT$1,680</span>
+            <div class="product-overlay">
+              <p>電競潮流</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>電競聯盟</h3>
+            <p>電競潮流</p>
+          </div>
+        </div>
+
+        <!-- Product 16 -->
+        <div class="product-card" data-id="16" data-category="logo">
+          <div class="product-image" style="background: linear-gradient(135deg, #f4f0f4 0%, #ece8ec 100%);">
+            <span class="emoji">🌸</span>
+            <span class="product-price">NT$990</span>
+            <div class="product-overlay">
+              <p>精緻典雅</p>
+              <button class="btn btn-primary" style="padding:8px 20px;font-size:13px;">查看詳情 →</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>雅緻花藝</h3>
+            <p>精緻典雅</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="load-more">
+        <button class="btn btn-secondary" style="padding:14px 40px;border-radius:30px;">載入更多模板 ↓</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Pricing Modal -->
+  <div class="modal-overlay" id="pricing-modal">
+    <div class="modal">
+      <button class="modal-close">×</button>
+      <h2>🎨 Logo 設計方案</h2>
+      <p>選擇適合您的方案，讓品牌閃閃發光 ✨</p>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card basic">
+          <h3>基礎版</h3>
+          <div class="price"><span>NT$</span>990</div>
+          <ul>
+            <li><span class="check">✓</span> 單張PNG圖檔</li>
+            <li><span class="check">✓</span> 1次免費微調</li>
+            <li><span class="check">✓</span> 3個工作天交件</li>
+            <li><span class="check">✓</span> 適合個人品牌</li>
+          </ul>
+          <button class="btn btn-teal" style="width:100%;">選擇此方案</button>
+        </div>
+        
+        <div class="pricing-card popular">
+          <div class="popular-badge">熱門</div>
+          <h3>專業版</h3>
+          <div class="price"><span>NT$</span>1,680</div>
+          <ul>
+            <li><span class="check">✓</span> AI向量檔案</li>
+            <li><span class="check">✓</span> PNG+SVG格式</li>
+            <li><span class="check">✓</span> 3次免費調整</li>
+            <li><span class="check">✓</span> 2個工作天交件</li>
+            <li><span class="check">✓</span> 適合正式商用</li>
+          </ul>
+          <button class="btn btn-secondary" style="width:100%;background:white;color:#2E3B6B;border:none;">選擇此方案</button>
+        </div>
+        
+        <div class="pricing-card custom">
+          <h3>客製化</h3>
+          <div class="price"><span>NT$</span>2,680<span>+</span></div>
+          <ul>
+            <li><span class="check">✓</span> 完全客製設計</li>
+            <li><span class="check">✓</span> 無限次修改</li>
+            <li><span class="check">✓</span> AI+PNG+SVG全格式</li>
+            <li><span class="check">✓</span> 品牌色彩規範</li>
+            <li><span class="check">✓</span> 專人一對一服務</li>
+          </ul>
+          <button class="btn btn-teal" style="width:100%;">選擇此方案</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed LINE Button -->
+  <div class="fixed-line-btn">
+    <a href="https://line.me/R/ti/p/@tensy" target="_blank" class="btn btn-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.193 0-.378-.104-.481-.281l-2.432-3.308v2.962c0 .349-.282.63-.63.63-.345 0-.627-.281-.627-.63V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.478.281l2.439 3.308V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-5.741 0c0 .349-.282.63-.631.63-.345 0-.627-.281-.627-.63V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.63H4.917c-.345 0-.63-.281-.63-.63V8.108c0-.345.285-.63.63-.63.349 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+      </svg>
+      LINE 即時諮詢
+    </a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
