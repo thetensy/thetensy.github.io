@@ -180,14 +180,21 @@ const logoProduct = products.logo;
     display: grid;
     grid-template-columns: 1fr 380px;
     gap: var(--space-8);
-    padding-top: var(--space-8);
+    padding-top: calc(var(--header-height) + var(--space-8) + 4px);
     padding-bottom: var(--space-12);
   }
   
   @media (max-width: 1024px) {
     .main {
       grid-template-columns: 1fr;
-      padding-bottom: 160px; /* 給底部購物車留空間 */
+      padding-bottom: 180px; /* 給底部購物車留空間 */
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .main {
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
     }
   }
   
@@ -204,6 +211,13 @@ const logoProduct = products.logo;
     box-shadow: var(--shadow);
   }
   
+  @media (max-width: 640px) {
+    .card {
+      padding: var(--space-4);
+      border-radius: var(--radius);
+    }
+  }
+  
   /* Product Tabs */
   .product-tabs {
     display: flex;
@@ -211,6 +225,11 @@ const logoProduct = products.logo;
     padding: var(--space-2);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .product-tabs::-webkit-scrollbar {
+    display: none;
   }
   
   .product-tab {
@@ -226,6 +245,18 @@ const logoProduct = products.logo;
     color: var(--gray-500);
     white-space: nowrap;
     transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  
+  @media (max-width: 640px) {
+    .product-tab {
+      padding: var(--space-2) var(--space-4);
+      font-size: 13px;
+    }
+    
+    .product-tab .tab-name {
+      display: none;
+    }
   }
   
   .product-tab:not(:disabled):hover {
@@ -261,6 +292,8 @@ const logoProduct = products.logo;
     align-items: center;
     justify-content: space-between;
     margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+    gap: var(--space-2);
   }
   
   .section-title {
@@ -270,6 +303,12 @@ const logoProduct = products.logo;
     font-size: 18px;
     font-weight: 700;
     color: var(--gray-800);
+  }
+  
+  @media (max-width: 640px) {
+    .section-title {
+      font-size: 16px;
+    }
   }
   
   .step-number {

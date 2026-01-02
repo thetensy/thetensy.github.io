@@ -12,117 +12,93 @@ import Header from '../components/Header.astro';
   <main class="flow-page">
     <!-- Hero -->
     <section class="flow-hero">
+      <div class="hero-rainbow"></div>
       <div class="container">
         <div class="hero-badge">📋 HOW IT WORKS</div>
         <h1>下單流程</h1>
         <p>五個簡單步驟，輕鬆擁有專業設計！</p>
       </div>
-      <div class="hero-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-      </div>
     </section>
     
-    <!-- Steps -->
+    <!-- Steps - 橫向時間軸 -->
     <section class="flow-steps">
       <div class="container">
-        <div class="steps-timeline">
-          <!-- Step 1 -->
-          <div class="step-item">
-            <div class="step-marker">
-              <div class="step-circle" style="--color: var(--rainbow-1);">
-                <span class="step-emoji">🎯</span>
-              </div>
-              <div class="step-line" style="--from: var(--rainbow-1); --to: var(--rainbow-2);"></div>
+        <div class="steps-horizontal">
+          <div class="step-card">
+            <div class="step-top">
+              <div class="step-circle" style="--color: var(--rainbow-1);">🎯</div>
+              <span class="step-num">STEP 1</span>
             </div>
-            <div class="step-content">
-              <span class="step-badge" style="--color: var(--rainbow-1);">STEP 1</span>
-              <h3>瀏覽選擇風格</h3>
-              <p>在設計列表中瀏覽各種風格參考，找到喜歡的設計方向</p>
-              <div class="step-tags">
-                <span>依分類篩選</span>
-                <span>預覽效果</span>
-                <span>查看價格</span>
-              </div>
+            <h3>瀏覽選擇風格</h3>
+            <p>在設計列表中瀏覽各種風格參考，找到喜歡的設計方向</p>
+            <div class="step-tags">
+              <span>依分類篩選</span>
+              <span>預覽效果</span>
+              <span>查看價格</span>
             </div>
           </div>
           
-          <!-- Step 2 -->
-          <div class="step-item">
-            <div class="step-marker">
-              <div class="step-circle" style="--color: var(--rainbow-2);">
-                <span class="step-emoji">📝</span>
-              </div>
-              <div class="step-line" style="--from: var(--rainbow-2); --to: var(--rainbow-3);"></div>
+          <div class="step-arrow">→</div>
+          
+          <div class="step-card">
+            <div class="step-top">
+              <div class="step-circle" style="--color: var(--rainbow-2);">📝</div>
+              <span class="step-num">STEP 2</span>
             </div>
-            <div class="step-content">
-              <span class="step-badge" style="--color: var(--rainbow-2);">STEP 2</span>
-              <h3>選擇方案填寫資料</h3>
-              <p>選擇適合的方案，填寫品牌名稱與設計需求</p>
-              <div class="step-tags">
-                <span>選擇方案</span>
-                <span>填寫品牌名稱</span>
-                <span>說明特殊需求</span>
-              </div>
+            <h3>選擇方案填寫資料</h3>
+            <p>選擇適合的方案，填寫品牌名稱與設計需求</p>
+            <div class="step-tags">
+              <span>選擇方案</span>
+              <span>填寫品牌名稱</span>
+              <span>說明需求</span>
             </div>
           </div>
           
-          <!-- Step 3 -->
-          <div class="step-item">
-            <div class="step-marker">
-              <div class="step-circle" style="--color: var(--rainbow-3);">
-                <span class="step-emoji">🛒</span>
-              </div>
-              <div class="step-line" style="--from: var(--rainbow-3); --to: var(--rainbow-4);"></div>
+          <div class="step-arrow">→</div>
+          
+          <div class="step-card">
+            <div class="step-top">
+              <div class="step-circle" style="--color: var(--rainbow-3);">🛒</div>
+              <span class="step-num">STEP 3</span>
             </div>
-            <div class="step-content">
-              <span class="step-badge" style="--color: var(--rainbow-3);">STEP 3</span>
-              <h3>加入購物車結帳</h3>
-              <p>確認訂單內容，前往蝦皮完成付款</p>
-              <div class="step-tags">
-                <span>確認訂單</span>
-                <span>蝦皮付款</span>
-                <span>安全有保障</span>
-              </div>
+            <h3>加入購物車結帳</h3>
+            <p>確認訂單內容，前往蝦皮完成付款</p>
+            <div class="step-tags">
+              <span>確認訂單</span>
+              <span>蝦皮付款</span>
+              <span>安全保障</span>
             </div>
           </div>
           
-          <!-- Step 4 -->
-          <div class="step-item">
-            <div class="step-marker">
-              <div class="step-circle" style="--color: var(--rainbow-4);">
-                <span class="step-emoji">🎨</span>
-              </div>
-              <div class="step-line" style="--from: var(--rainbow-4); --to: var(--rainbow-5);"></div>
+          <div class="step-arrow">→</div>
+          
+          <div class="step-card">
+            <div class="step-top">
+              <div class="step-circle" style="--color: var(--rainbow-4);">🎨</div>
+              <span class="step-num">STEP 4</span>
             </div>
-            <div class="step-content">
-              <span class="step-badge" style="--color: var(--rainbow-4);">STEP 4</span>
-              <h3>設計師開始製作</h3>
-              <p>付款後設計師立即開工，過程中可透過 LINE 溝通</p>
-              <div class="step-tags">
-                <span>付款後開始</span>
-                <span>進度更新</span>
-                <span>過程可溝通</span>
-              </div>
+            <h3>設計師開始製作</h3>
+            <p>付款後設計師立即開工，過程中可透過 LINE 溝通</p>
+            <div class="step-tags">
+              <span>付款後開始</span>
+              <span>進度更新</span>
+              <span>可溝通</span>
             </div>
           </div>
           
-          <!-- Step 5 -->
-          <div class="step-item">
-            <div class="step-marker">
-              <div class="step-circle" style="--color: var(--rainbow-5);">
-                <span class="step-emoji">🎉</span>
-              </div>
+          <div class="step-arrow">→</div>
+          
+          <div class="step-card">
+            <div class="step-top">
+              <div class="step-circle" style="--color: var(--rainbow-5);">🎉</div>
+              <span class="step-num">STEP 5</span>
             </div>
-            <div class="step-content">
-              <span class="step-badge" style="--color: var(--rainbow-5);">STEP 5</span>
-              <h3>確認交件完成</h3>
-              <p>收到設計稿，確認滿意後交付完整檔案！</p>
-              <div class="step-tags">
-                <span>預覽設計稿</span>
-                <span>免費修改</span>
-                <span>交付完整檔案</span>
-              </div>
+            <h3>確認交件完成</h3>
+            <p>收到設計稿，確認滿意後交付完整檔案！</p>
+            <div class="step-tags">
+              <span>預覽設計稿</span>
+              <span>免費修改</span>
+              <span>交付檔案</span>
             </div>
           </div>
         </div>
@@ -170,36 +146,31 @@ import Header from '../components/Header.astro';
       </div>
     </section>
     
-    <!-- FAQ -->
+    <!-- FAQ - 改為兩欄式 -->
     <section class="flow-faq">
       <div class="container">
         <h2 class="faq-title">❓ 常見問題</h2>
         
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>付款後多久開始製作？</summary>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h4>💬 付款後多久開始製作？</h4>
             <p>收到款項確認後，設計師會在當天或隔日開始製作您的設計。</p>
-          </details>
+          </div>
           
-          <details class="faq-item">
-            <summary>可以指定設計師嗎？</summary>
+          <div class="faq-item">
+            <h4>💬 可以指定設計師嗎？</h4>
             <p>目前由系統自動分配最適合的設計師，確保品質與效率。</p>
-          </details>
+          </div>
           
-          <details class="faq-item">
-            <summary>如果不滿意怎麼辦？</summary>
+          <div class="faq-item">
+            <h4>💬 如果不滿意怎麼辦？</h4>
             <p>每個方案都有免費修改次數，我們會調整到您滿意為止！</p>
-          </details>
+          </div>
           
-          <details class="faq-item">
-            <summary>急件可以加價嗎？</summary>
+          <div class="faq-item">
+            <h4>💬 急件可以加價嗎？</h4>
             <p>可以！急件費用依實際情況報價，請透過 LINE 告知。</p>
-          </details>
-          
-          <details class="faq-item">
-            <summary>可以開發票嗎？</summary>
-            <p>可以，蝦皮付款會提供電子發票，如需統編請於備註說明。</p>
-          </details>
+          </div>
         </div>
       </div>
     </section>
@@ -213,7 +184,7 @@ import Header from '../components/Header.astro';
             <h2>準備好了嗎？🚀</h2>
             <p>現在就開始，讓添添為您服務！</p>
             <div class="cta-buttons">
-              <a href="/order" class="btn btn-primary btn-xl">開始設計 →</a>
+              <a href="/order" class="btn btn-white btn-xl">開始設計 →</a>
               <a href="https://line.me/ti/p/@tensy" target="_blank" class="btn btn-line btn-lg">
                 LINE 直接諮詢
               </a>
@@ -226,9 +197,7 @@ import Header from '../components/Header.astro';
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <div class="footer-content">
-          <p>© 2025 添喜設計 Tensy Design. All rights reserved.</p>
-        </div>
+        <p>© 2025 添喜設計 Tensy Design. All rights reserved.</p>
       </div>
     </footer>
   </main>
@@ -242,46 +211,25 @@ import Header from '../components/Header.astro';
   /* Hero */
   .flow-hero {
     position: relative;
-    padding: var(--space-16) 0;
+    padding: var(--space-12) 0;
     text-align: center;
     overflow: hidden;
-    background: linear-gradient(180deg, var(--cream) 0%, white 100%);
+    background: white;
   }
   
-  .hero-shapes {
+  .hero-rainbow {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-  
-  .shape {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.3;
-  }
-  
-  .shape-1 {
-    width: 400px;
-    height: 400px;
-    background: var(--rainbow-4);
-    top: -100px;
-    right: -100px;
-  }
-  
-  .shape-2 {
-    width: 300px;
-    height: 300px;
-    background: var(--rainbow-1);
-    bottom: -100px;
-    left: -100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-rainbow);
   }
   
   .hero-badge {
     display: inline-block;
     padding: var(--space-2) var(--space-4);
-    background: white;
+    background: var(--cream);
     border-radius: var(--radius-full);
     font-family: var(--font-mono);
     font-size: 12px;
@@ -289,137 +237,155 @@ import Header from '../components/Header.astro';
     letter-spacing: 1px;
     color: var(--teal);
     margin-bottom: var(--space-4);
-    box-shadow: var(--shadow);
   }
   
   .flow-hero h1 {
     font-family: var(--font-display);
-    font-size: clamp(36px, 5vw, 56px);
+    font-size: clamp(32px, 5vw, 48px);
     font-weight: 800;
     color: var(--gray-800);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
   }
   
   .flow-hero p {
-    font-size: 18px;
+    font-size: 17px;
     color: var(--gray-500);
   }
   
-  /* Steps */
+  /* Steps - 橫向 */
   .flow-steps {
-    padding: var(--space-16) 0;
+    padding: var(--space-12) 0;
+    background: var(--cream);
+  }
+  
+  .steps-horizontal {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+  
+  @media (max-width: 1200px) {
+    .steps-horizontal {
+      flex-wrap: wrap;
+      gap: var(--space-6);
+    }
+    
+    .step-arrow {
+      display: none;
+    }
+  }
+  
+  .step-card {
+    flex: 1;
+    max-width: 200px;
     background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-5);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
   }
   
-  .steps-timeline {
-    max-width: 700px;
-    margin: 0 auto;
+  @media (max-width: 1200px) {
+    .step-card {
+      max-width: 280px;
+      flex: 0 0 calc(50% - var(--space-3));
+    }
   }
   
-  .step-item {
+  @media (max-width: 640px) {
+    .step-card {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+  
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .step-top {
     display: flex;
-    gap: var(--space-6);
-    margin-bottom: var(--space-2);
-  }
-  
-  .step-item:last-child {
-    margin-bottom: 0;
-  }
-  
-  .step-marker {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    flex-shrink: 0;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
   }
   
   .step-circle {
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
     background: var(--color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
   
-  .step-emoji {
-    font-size: 28px;
-  }
-  
-  .step-line {
-    flex: 1;
-    width: 3px;
-    min-height: 60px;
-    background: linear-gradient(180deg, var(--from) 0%, var(--to) 100%);
-    border-radius: 3px;
-    margin: var(--space-2) 0;
-  }
-  
-  .step-content {
-    flex: 1;
-    padding-bottom: var(--space-8);
-  }
-  
-  .step-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--color);
-    border-radius: var(--radius-full);
+  .step-num {
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 700;
-    color: white;
-    margin-bottom: var(--space-2);
+    color: var(--gray-400);
+    letter-spacing: 1px;
   }
   
-  .step-content h3 {
-    font-size: 22px;
+  .step-card h3 {
+    font-size: 16px;
     font-weight: 700;
     color: var(--gray-800);
     margin-bottom: var(--space-2);
+    line-height: 1.4;
   }
   
-  .step-content p {
-    font-size: 15px;
+  .step-card p {
+    font-size: 13px;
     color: var(--gray-500);
-    line-height: 1.6;
-    margin-bottom: var(--space-4);
+    line-height: 1.5;
+    margin-bottom: var(--space-3);
   }
   
   .step-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
+    gap: var(--space-1);
   }
   
   .step-tags span {
-    padding: 6px 14px;
+    padding: 4px 10px;
     background: var(--gray-100);
     border-radius: var(--radius-full);
-    font-size: 13px;
+    font-size: 11px;
     color: var(--gray-600);
+  }
+  
+  .step-arrow {
+    font-size: 24px;
+    color: var(--gray-300);
+    padding-top: var(--space-6);
+    flex-shrink: 0;
   }
   
   /* Notes */
   .flow-notes {
-    padding: var(--space-16) 0;
-    background: var(--cream);
+    padding: var(--space-12) 0;
+    background: white;
   }
   
   .notes-title {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 800;
     text-align: center;
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-8);
     color: var(--gray-800);
   }
   
   .notes-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-5);
+    gap: var(--space-4);
   }
   
   @media (max-width: 1024px) {
@@ -436,12 +402,11 @@ import Header from '../components/Header.astro';
   
   .note-card {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--space-4);
     padding: var(--space-5);
-    background: white;
+    background: var(--cream);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
   }
   
   .note-icon {
@@ -453,119 +418,122 @@ import Header from '../components/Header.astro';
     font-size: 15px;
     font-weight: 700;
     color: var(--gray-800);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
   
   .note-content p {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--gray-500);
   }
   
-  /* FAQ */
+  /* FAQ - 兩欄式 */
   .flow-faq {
-    padding: var(--space-16) 0;
-    background: white;
+    padding: var(--space-12) 0;
+    background: var(--cream);
   }
   
   .faq-title {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 800;
     text-align: center;
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-8);
     color: var(--gray-800);
   }
   
-  .faq-list {
-    max-width: 700px;
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    max-width: 900px;
     margin: 0 auto;
   }
   
+  @media (max-width: 768px) {
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
   .faq-item {
-    border-bottom: 1px solid var(--gray-200);
+    background: white;
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
   }
   
-  .faq-item summary {
-    padding: var(--space-5) 0;
-    font-size: 16px;
-    font-weight: 600;
+  .faq-item h4 {
+    font-size: 15px;
+    font-weight: 700;
     color: var(--gray-800);
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .faq-item summary::after {
-    content: '+';
-    font-size: 24px;
-    color: var(--gray-400);
-    transition: transform 0.2s ease;
-  }
-  
-  .faq-item[open] summary::after {
-    transform: rotate(45deg);
+    margin-bottom: var(--space-2);
   }
   
   .faq-item p {
-    padding: 0 0 var(--space-5);
-    font-size: 15px;
+    font-size: 14px;
     color: var(--gray-500);
-    line-height: 1.7;
+    line-height: 1.6;
   }
   
   /* CTA */
   .flow-cta {
-    padding: var(--space-16) 0;
-    background: var(--cream);
+    padding: var(--space-12) 0;
+    background: white;
   }
   
   .cta-box {
     display: flex;
     align-items: center;
-    gap: var(--space-10);
-    padding: var(--space-10);
+    gap: var(--space-8);
+    padding: var(--space-8);
     background: var(--primary);
     border-radius: var(--radius-2xl);
     color: white;
+    max-width: 800px;
+    margin: 0 auto;
   }
   
   @media (max-width: 768px) {
     .cta-box {
       flex-direction: column;
       text-align: center;
-      padding: var(--space-8);
+      padding: var(--space-6);
     }
   }
   
   .cta-tenten {
-    width: 160px;
+    width: 140px;
     height: auto;
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
   
   @media (max-width: 768px) {
     .cta-tenten {
-      width: 120px;
+      width: 100px;
     }
   }
   
   .cta-content h2 {
     font-family: var(--font-display);
-    font-size: clamp(24px, 4vw, 32px);
+    font-size: clamp(22px, 4vw, 28px);
     font-weight: 800;
     margin-bottom: var(--space-2);
   }
   
   .cta-content p {
-    font-size: 16px;
+    font-size: 15px;
     opacity: 0.8;
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-5);
   }
   
   .cta-buttons {
     display: flex;
-    gap: var(--space-4);
+    gap: var(--space-3);
     flex-wrap: wrap;
   }
   
@@ -590,21 +558,21 @@ import Header from '../components/Header.astro';
   }
   
   .btn-lg {
+    padding: var(--space-4) var(--space-6);
+    font-size: 14px;
+  }
+  
+  .btn-xl {
     padding: var(--space-4) var(--space-8);
     font-size: 15px;
   }
   
-  .btn-xl {
-    padding: var(--space-5) var(--space-10);
-    font-size: 16px;
-  }
-  
-  .btn-primary {
+  .btn-white {
     background: white;
     color: var(--primary);
   }
   
-  .btn-primary:hover {
+  .btn-white:hover {
     background: var(--cream);
     transform: translateY(-2px);
   }

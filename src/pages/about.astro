@@ -1,0 +1,615 @@
+---
+// 關於添喜頁面
+// 添添的自我介紹
+
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout title="關於添喜">
+  <Header />
+  
+  <main class="about-page">
+    <!-- Hero -->
+    <section class="about-hero">
+      <div class="hero-bg">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+      
+      <div class="container hero-content">
+        <div class="tenten-intro">
+          <div class="tenten-float">
+            <img src="/images/tenten.png" alt="添添" class="tenten-big" id="tentenFloat" />
+          </div>
+          <div class="speech-bubble">
+            <h1>嗨！我是<span class="highlight">添添</span></h1>
+            <p class="intro-text">
+              一隻熱愛設計的小鸚鵡 🎨<br>
+              我的使命是讓每個品牌都能擁有美美的設計！
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Story -->
+    <section class="story-section">
+      <div class="container">
+        <div class="story-card">
+          <div class="story-header">
+            <span class="sparkle">✨</span>
+            <h2>添喜的故事</h2>
+          </div>
+          
+          <div class="story-content">
+            <p>
+              「添喜」這個名字，來自於我們想為每個品牌<strong>增添喜悅</strong>的初衷。
+            </p>
+            <p>
+              我們相信，好的設計不應該是遙不可及的奢侈品。無論是剛起步的小店、個人工作室，還是成熟企業，都值得擁有專業又有質感的品牌形象。
+            </p>
+            <p>
+              透過自助式下單與透明定價，我們讓設計變得簡單、快速、沒有壓力。選擇喜歡的風格，填寫品牌資訊，剩下的就交給我們！
+            </p>
+            
+            <div class="slogan-box">
+              <span class="slogan">Fancy Brand, Tensy Made!</span>
+              <span class="emoji">🦜✨</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Values -->
+    <section class="values-section">
+      <div class="container">
+        <h2 class="section-title">我們的堅持</h2>
+        
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">💎</div>
+            <h3>品質優先</h3>
+            <p>每件作品都是設計師原創，不套模板、不敷衍</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">🎯</div>
+            <h3>透明定價</h3>
+            <p>網站直接看到價格，沒有隱藏費用，預算好掌控</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">⚡</div>
+            <h3>快速交件</h3>
+            <p>最快 2 個工作天完成，讓您的品牌快速上線</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">💬</div>
+            <h3>貼心服務</h3>
+            <p>提供免費修改，LINE 即時溝通，直到您滿意為止</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-content">
+            <h2>想認識添添嗎？</h2>
+            <p>有任何問題歡迎透過 LINE 與我聊聊！</p>
+            
+            <div class="contact-links">
+              <a href="https://line.me/ti/p/@tensy" target="_blank" class="contact-item">
+                <div class="contact-icon line">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.193 0-.378-.104-.481-.281l-2.432-3.308v2.962c0 .349-.282.63-.63.63-.345 0-.627-.281-.627-.63V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.478.281l2.439 3.308V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-5.741 0c0 .349-.282.63-.631.63-.345 0-.627-.281-.627-.63V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.63H4.917c-.345 0-.63-.281-.63-.63V8.108c0-.345.285-.63.63-.63.349 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="contact-label">LINE</span>
+                  <span class="contact-value">@tensy</span>
+                </div>
+              </a>
+              
+              <a href="mailto:hello@thetensy.com" class="contact-item">
+                <div class="contact-icon email">📧</div>
+                <div>
+                  <span class="contact-label">Email</span>
+                  <span class="contact-value">hello@thetensy.com</span>
+                </div>
+              </a>
+            </div>
+          </div>
+          
+          <div class="contact-visual">
+            <img src="/images/tenten.png" alt="添添" class="contact-tenten" />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>準備好讓品牌閃閃發光了嗎？</h2>
+          <a href="/order" class="btn btn-primary btn-xl">開始設計 →</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 添喜設計 Tensy Design. All rights reserved.</p>
+      </div>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .about-page {
+    padding-top: calc(4px + var(--header-height));
+  }
+  
+  /* Hero */
+  .about-hero {
+    position: relative;
+    padding: var(--space-16) 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--cream) 0%, white 100%);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+  }
+  
+  .shape-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--rainbow-4);
+    top: -200px;
+    right: -100px;
+  }
+  
+  .shape-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--rainbow-1);
+    bottom: -150px;
+    left: -100px;
+  }
+  
+  .shape-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--rainbow-3);
+    top: 30%;
+    left: 50%;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .tenten-intro {
+    display: flex;
+    align-items: center;
+    gap: var(--space-10);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 768px) {
+    .tenten-intro {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  
+  .tenten-float {
+    flex-shrink: 0;
+  }
+  
+  .tenten-big {
+    width: 250px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+    animation: floatTenten 6s ease-in-out infinite;
+  }
+  
+  @keyframes floatTenten {
+    0%, 100% { 
+      transform: translateY(0) rotate(-3deg); 
+    }
+    25% {
+      transform: translateY(-15px) rotate(0deg);
+    }
+    50% { 
+      transform: translateY(-5px) rotate(3deg); 
+    }
+    75% {
+      transform: translateY(-20px) rotate(0deg);
+    }
+  }
+  
+  .speech-bubble {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  
+  .speech-bubble::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 20px solid transparent;
+    border-right-color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .speech-bubble::before {
+      display: none;
+    }
+  }
+  
+  .speech-bubble h1 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 800;
+    color: var(--gray-800);
+    margin-bottom: var(--space-3);
+  }
+  
+  .speech-bubble .highlight {
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .intro-text {
+    font-size: 18px;
+    color: var(--gray-600);
+    line-height: 1.8;
+  }
+  
+  /* Story */
+  .story-section {
+    padding: var(--space-16) 0;
+    background: white;
+  }
+  
+  .story-card {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .story-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+  
+  .sparkle {
+    font-size: 32px;
+  }
+  
+  .story-header h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gray-800);
+  }
+  
+  .story-content p {
+    font-size: 17px;
+    color: var(--gray-600);
+    line-height: 2;
+    margin-bottom: var(--space-5);
+  }
+  
+  .story-content strong {
+    color: var(--primary);
+  }
+  
+  .slogan-box {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: var(--cream);
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-full);
+    margin-top: var(--space-6);
+  }
+  
+  .slogan {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .slogan-box .emoji {
+    font-size: 24px;
+  }
+  
+  /* Values */
+  .values-section {
+    padding: var(--space-16) 0;
+    background: var(--cream);
+  }
+  
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--gray-800);
+    margin-bottom: var(--space-10);
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-5);
+  }
+  
+  @media (max-width: 1024px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .value-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .value-icon {
+    font-size: 40px;
+    margin-bottom: var(--space-4);
+  }
+  
+  .value-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-2);
+  }
+  
+  .value-card p {
+    font-size: 14px;
+    color: var(--gray-500);
+    line-height: 1.6;
+  }
+  
+  /* Contact */
+  .contact-section {
+    padding: var(--space-16) 0;
+    background: white;
+  }
+  
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-10);
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--primary);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-card {
+      flex-direction: column;
+      text-align: center;
+      padding: var(--space-8);
+    }
+  }
+  
+  .contact-content h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: var(--space-2);
+  }
+  
+  .contact-content p {
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: var(--space-6);
+  }
+  
+  .contact-links {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-links {
+      justify-content: center;
+    }
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: rgba(255,255,255,0.1);
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-lg);
+    transition: all 0.2s ease;
+  }
+  
+  .contact-item:hover {
+    background: rgba(255,255,255,0.2);
+  }
+  
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  
+  .contact-icon.line {
+    background: var(--line-green);
+  }
+  
+  .contact-icon.email {
+    background: var(--rainbow-2);
+  }
+  
+  .contact-label {
+    display: block;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  
+  .contact-value {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .contact-tenten {
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+    animation: floatTenten 6s ease-in-out infinite;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-tenten {
+      width: 120px;
+    }
+  }
+  
+  /* CTA */
+  .cta-section {
+    padding: var(--space-16) 0;
+    background: var(--cream);
+    text-align: center;
+  }
+  
+  .cta-content h2 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 800;
+    color: var(--gray-800);
+    margin-bottom: var(--space-6);
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-xl {
+    padding: var(--space-5) var(--space-10);
+    font-size: 16px;
+  }
+  
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 20px rgba(46, 59, 107, 0.3);
+  }
+  
+  .btn-primary:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+  }
+  
+  /* Footer */
+  .footer {
+    padding: var(--space-8) 0;
+    background: var(--gray-800);
+    color: white;
+    text-align: center;
+  }
+  
+  .footer p {
+    font-size: 13px;
+    opacity: 0.5;
+  }
+</style>
+
+<script>
+  // 添添隨機飄動效果
+  const tenten = document.getElementById('tentenFloat');
+  if (tenten) {
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      const rect = tenten.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      mouseX = (e.clientX - centerX) / 50;
+      mouseY = (e.clientY - centerY) / 50;
+      
+      tenten.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    });
+  }
+</script>

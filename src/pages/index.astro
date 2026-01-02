@@ -59,30 +59,18 @@ import Header from '../components/Header.astro';
         </div>
         
         <div class="hero-visual">
-          <div class="tenten-container">
+          <div class="tenten-frame">
             <img src="/images/tenten.png" alt="添添 - 添喜設計吉祥物" class="tenten-img" />
-            <div class="tenten-bubble">
-              <p>準備好讓品牌<br><strong>閃閃發光</strong>了嗎？✨</p>
-            </div>
           </div>
-          
-          <div class="floating-cards">
-            <div class="float-card card-1">
-              <span class="card-emoji">🎨</span>
-              <span class="card-text">Logo 設計</span>
-              <span class="card-price">$990 起</span>
-            </div>
-            <div class="float-card card-2">
-              <span class="card-emoji">💼</span>
-              <span class="card-text">名片設計</span>
-              <span class="card-tag">即將推出</span>
-            </div>
-            <div class="float-card card-3">
-              <span class="card-emoji">🌐</span>
-              <span class="card-text">網站設計</span>
-              <span class="card-price">$5,000 起</span>
-            </div>
+          <div class="tenten-bubble">
+            <p>準備好讓品牌<br><strong>閃閃發光</strong>了嗎？✨</p>
           </div>
+        </div>
+        
+        <!-- Mobile Tenten -->
+        <div class="hero-visual-mobile">
+          <img src="/images/tenten.png" alt="添添" class="tenten-mobile" />
+          <div class="bubble-mobile">準備好讓品牌閃閃發光了嗎？✨</div>
         </div>
       </div>
       
@@ -499,12 +487,13 @@ import Header from '../components/Header.astro';
     }
   }
   
-  .tenten-container {
+  .tenten-frame {
     position: relative;
+    padding: var(--space-8);
   }
   
   .tenten-img {
-    width: 320px;
+    width: 280px;
     height: auto;
     filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
     animation: float 4s ease-in-out infinite;
@@ -517,14 +506,21 @@ import Header from '../components/Header.astro';
   
   .tenten-bubble {
     position: absolute;
-    top: -20px;
-    right: -140px;
+    top: 20px;
+    right: -100px;
     background: white;
     padding: var(--space-4) var(--space-5);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     font-size: 14px;
     line-height: 1.5;
+    animation: floatBubble 4s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+  
+  @keyframes floatBubble {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
   
   .tenten-bubble::before {
@@ -537,64 +533,35 @@ import Header from '../components/Header.astro';
     border-right-color: white;
   }
   
-  .floating-cards {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-  
-  .float-card {
-    position: absolute;
-    background: white;
-    padding: var(--space-3) var(--space-4);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    display: flex;
+  /* Mobile Hero Visual */
+  .hero-visual-mobile {
+    display: none;
+    flex-direction: column;
     align-items: center;
-    gap: var(--space-3);
-    font-size: 13px;
-    animation: float 5s ease-in-out infinite;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
   }
   
-  .card-1 {
-    top: 10%;
-    left: -60px;
-    animation-delay: 0s;
+  @media (max-width: 1024px) {
+    .hero-visual-mobile {
+      display: flex;
+    }
   }
   
-  .card-2 {
-    bottom: 30%;
-    left: -80px;
-    animation-delay: 1s;
+  .tenten-mobile {
+    width: 180px;
+    height: auto;
+    animation: float 4s ease-in-out infinite;
   }
   
-  .card-3 {
-    bottom: 10%;
-    right: -40px;
-    animation-delay: 2s;
-  }
-  
-  .card-emoji {
-    font-size: 20px;
-  }
-  
-  .card-text {
-    font-weight: 600;
-    color: var(--gray-800);
-  }
-  
-  .card-price {
-    font-size: 12px;
-    color: var(--teal);
-    font-weight: 600;
-  }
-  
-  .card-tag {
-    font-size: 11px;
-    padding: 2px 8px;
-    background: var(--gray-100);
+  .bubble-mobile {
+    background: white;
+    padding: var(--space-3) var(--space-5);
     border-radius: var(--radius-full);
-    color: var(--gray-500);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-700);
+    box-shadow: var(--shadow);
   }
   
   /* Scroll indicator */
