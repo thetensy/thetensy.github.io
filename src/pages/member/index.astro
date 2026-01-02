@@ -589,31 +589,35 @@ import Header from '../../components/Header.astro';
   const benefitsGrid = document.getElementById('benefitsGrid');
   const logoutBtn = document.getElementById('logoutBtn');
   
-  // 從 API 取得會員資料
-  async function fetchMemberFromAPI(): Promise<Member | null> {
-    try {
-      const response = await fetch('/api/auth/me', {
-        credentials: 'include'
-      });
-      
-      if (!response.ok) return null;
-      
-      const data = await response.json();
-      if (data.member) {
-        saveMember(data.member);
-        return data.member;
+  // 從 URL hash 讀取會員資料（LINE 登入後會帶過來）
+  function getMemberFromHash(): Member | null {
+    const hash = window.location.hash;
+    if (hash.includes('member=')) {
+      try {
+        const memberData = hash.split('member=')[1];
+        const member = JSON.parse(decodeURIComponent(memberData));
+        // 儲存到 localStorage
+        saveMember(member);
+        // 清除 URL hash
+        window.history.replaceState({}, '', window.location.pathname);
+        console.log('✅ LINE 登入成功！', member.name);
+        return member;
+      } catch (e) {
+        console.error('解析會員資料失敗', e);
       }
-      return null;
-    } catch (error) {
-      console.log('API 不可用，使用本地資料');
-      return null;
     }
+    return null;
   }
   
   // 渲染會員資訊
-  async function renderMemberInfo() {
-    let member = await fetchMemberFromAPI();
-    if (!member) member = getMember();
+  function renderMemberInfo() {
+    // 先檢查 URL hash（LINE 登入後）
+    let member = getMemberFromHash();
+    
+    // 如果 hash 沒有，從 localStorage 讀取
+    if (!member) {
+      member = getMember();
+    }
     
     if (!member) {
       guestView!.style.display = 'block';

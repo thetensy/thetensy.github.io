@@ -90,15 +90,14 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
       updatedAt: new Date().toISOString(),
     };
     
-    // 4. 簽發 session token
-    const sessionToken = await createSessionToken(member, env.JWT_SECRET);
+    // 4. 把會員資料編碼傳給前端（用 URL hash，更可靠）
+    const memberData = encodeURIComponent(JSON.stringify(member));
     
-    // 5. 設定 cookie 並導向會員頁面
+    // 5. 導向會員頁面，前端會讀取 hash 並存到 localStorage
     return new Response(null, {
       status: 302,
       headers: {
-        'Location': `${url.origin}/member?login=success`,
-        'Set-Cookie': `session=${sessionToken}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=2592000`,
+        'Location': `${url.origin}/member?login=success#member=${memberData}`,
       },
     });
     
