@@ -437,13 +437,15 @@ import Header from '../components/Header.astro';
   .contact-card {
     display: flex;
     align-items: center;
-    gap: var(--space-10);
+    justify-content: space-between;
     max-width: 900px;
     margin: 0 auto;
     background: var(--primary);
     border-radius: var(--radius-2xl);
     padding: var(--space-10);
     color: white;
+    overflow: hidden;
+    position: relative;
   }
   
   @media (max-width: 768px) {
@@ -452,6 +454,10 @@ import Header from '../components/Header.astro';
       text-align: center;
       padding: var(--space-8);
     }
+  }
+  
+  .contact-content {
+    flex: 1;
   }
   
   .contact-content h2 {
@@ -523,8 +529,19 @@ import Header from '../components/Header.astro';
     font-weight: 600;
   }
   
+  .contact-visual {
+    flex-shrink: 0;
+    margin-right: -20px;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-visual {
+      margin-right: 0;
+    }
+  }
+  
   .contact-tenten {
-    width: 150px;
+    width: 180px;
     height: auto;
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
     animation: floatTenten 6s ease-in-out infinite;

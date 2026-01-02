@@ -407,10 +407,25 @@ import Header from '../components/Header.astro';
   }
   
   .gradient-text {
-    background: var(--gradient-rainbow);
+    background: linear-gradient(90deg, 
+      var(--rainbow-1), 
+      var(--rainbow-2), 
+      var(--rainbow-3), 
+      var(--rainbow-4), 
+      var(--rainbow-5), 
+      var(--rainbow-6),
+      var(--rainbow-1)
+    );
+    background-size: 200% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: rainbowText 3s linear infinite;
+  }
+  
+  @keyframes rainbowText {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
   
   .hero-desc {

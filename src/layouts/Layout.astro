@@ -144,15 +144,30 @@ const { title, description = '自助式設計平台，透明價格、快速交�
     cursor: url('/images/cursor.png'), auto;
   }
   
-  /* Rainbow Bar */
+  /* Rainbow Bar - 動態漸層 */
   .rainbow-bar {
     height: 4px;
-    background: var(--gradient-rainbow);
+    background: linear-gradient(90deg, 
+      var(--rainbow-1), 
+      var(--rainbow-2), 
+      var(--rainbow-3), 
+      var(--rainbow-4), 
+      var(--rainbow-5), 
+      var(--rainbow-6),
+      var(--rainbow-1)
+    );
+    background-size: 200% 100%;
+    animation: rainbowMove 3s linear infinite;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+  }
+  
+  @keyframes rainbowMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
   
   img, svg {
