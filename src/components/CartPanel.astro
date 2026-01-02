@@ -58,8 +58,11 @@
     
     <!-- 行動按鈕 -->
     <div class="cart-actions">
-      <a href="https://shopee.tw/changyuanqu" target="_blank" class="btn btn-shopee btn-lg" id="checkoutBtn">
-        🛒 前往蝦皮結帳
+      <button class="btn btn-primary btn-lg" id="addToCartBtn" type="button">
+        🛒 加入購物車
+      </button>
+      <a href="/cart" class="btn btn-outline btn-lg" id="goToCartBtn" style="display: none;">
+        前往購物車結帳 →
       </a>
       <button class="btn btn-ghost" id="downloadQuoteBtn" type="button">
         📄 下載報價單
@@ -424,11 +427,100 @@
 </style>
 
 <script>
-  // 急件 Modal
+  // 購物車面板邏輯
+  import { addToCart, getCartCount } from '../lib/cart';
+  
+  // DOM 元素
+  const addToCartBtn = document.getElementById('addToCartBtn');
+  const goToCartBtn = document.getElementById('goToCartBtn');
   const rushBtn = document.getElementById('rushOrderBtn');
   const rushModal = document.getElementById('rushModal');
   const closeBtn = document.getElementById('closeRushModal');
   
+  // 加入購物車
+  addToCartBtn?.addEventListener('click', () => {
+    // 收集表單資料
+    const brandNameInput = document.getElementById('brandName') as HTMLInputElement;
+    const industrySelect = document.getElementById('industry') as HTMLSelectElement;
+    const notesInput = document.getElementById('notes') as HTMLTextAreaElement;
+    const selectedStyle = document.querySelector('.style-card.selected');
+    const selectedPlan = document.querySelector('input[name="plan"]:checked') as HTMLInputElement;
+    const totalAmountEl = document.getElementById('totalAmount');
+    
+    // 驗證
+    if (!brandNameInput?.value.trim()) {
+      alert('請填寫品牌名稱');
+      brandNameInput?.focus();
+      return;
+    }
+    
+    if (!selectedStyle) {
+      alert('請選擇一個設計風格');
+      return;
+    }
+    
+    // 取得資料
+    const styleId = selectedStyle.getAttribute('data-style-id') || '';
+    const styleName = selectedStyle.querySelector('.style-name')?.textContent || '';
+    const planId = selectedPlan?.value || 'basic';
+    const planName = planId === 'pro' ? '專業版' : '基礎版';
+    const price = parseInt(totalAmountEl?.textContent?.replace(/,/g, '') || '990');
+    const selectedColor = document.querySelector('.color-option.selected')?.getAttribute('data-color');
+    
+    // 加入購物車
+    const item = addToCart({
+      productType: 'logo',
+      productName: 'Logo 設計',
+      styleId,
+      styleName,
+      planId,
+      planName,
+      price,
+      quantity: 1,
+      brandName: brandNameInput.value.trim(),
+      industry: industrySelect?.value,
+      primaryColor: selectedColor || undefined,
+      notes: notesInput?.value.trim() || undefined
+    });
+    
+    console.log('Added to cart:', item);
+    
+    // 更新 UI
+    addToCartBtn.textContent = '✓ 已加入購物車';
+    addToCartBtn.classList.add('success');
+    (addToCartBtn as HTMLButtonElement).disabled = true;
+    
+    // 顯示前往購物車按鈕
+    if (goToCartBtn) {
+      goToCartBtn.style.display = 'flex';
+    }
+    
+    // 更新 Header 購物車數量
+    updateCartBadge();
+    
+    // 3 秒後恢復按鈕
+    setTimeout(() => {
+      addToCartBtn.textContent = '🛒 加入購物車';
+      addToCartBtn.classList.remove('success');
+      (addToCartBtn as HTMLButtonElement).disabled = false;
+    }, 3000);
+  });
+  
+  // 更新購物車數量徽章
+  function updateCartBadge() {
+    const count = getCartCount();
+    const badge = document.getElementById('cartBadge');
+    
+    if (badge) {
+      badge.textContent = count.toString();
+      badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+    
+    // 觸發自訂事件
+    window.dispatchEvent(new CustomEvent('cart-badge-update', { detail: count }));
+  }
+  
+  // 急件 Modal
   rushBtn?.addEventListener('click', () => {
     rushModal!.style.display = 'flex';
   });
@@ -442,4 +534,7 @@
       rushModal.style.display = 'none';
     }
   });
+  
+  // 初始化購物車徽章
+  updateCartBadge();
 </script>
