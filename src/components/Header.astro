@@ -21,7 +21,10 @@
     </nav>
     
     <div class="header-actions">
-      <a href="/cart" class="cart-btn" id="cartBtn">
+      <a href="/member" class="member-btn" id="memberBtn" title="會員中心">
+        <span class="member-icon">👤</span>
+      </a>
+      <a href="/cart" class="cart-btn" id="cartBtn" title="購物車">
         <span class="cart-icon">🛒</span>
         <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
       </a>
@@ -125,6 +128,24 @@
     display: flex;
     align-items: center;
     gap: var(--space-3);
+  }
+  
+  .member-btn {
+    position: relative;
+    padding: var(--space-2);
+    transition: transform 0.2s;
+  }
+  
+  .member-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  .member-icon {
+    font-size: 20px;
+  }
+  
+  .member-btn.logged-in .member-icon {
+    filter: drop-shadow(0 0 4px var(--teal));
   }
   
   .cart-btn {

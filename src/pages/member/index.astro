@@ -1,0 +1,692 @@
+---
+// 會員中心
+// 顯示會員資訊、餘額、等級、訂單記錄
+
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout title="會員中心">
+  <Header />
+  
+  <main class="member-page">
+    <div class="container">
+      <!-- 未登入狀態 -->
+      <div class="guest-view" id="guestView">
+        <div class="guest-card">
+          <div class="guest-icon">👤</div>
+          <h1>歡迎來到添喜設計</h1>
+          <p>登入會員享有專屬折扣與服務</p>
+          
+          <div class="tier-preview">
+            <div class="tier-item">
+              <span class="tier-icon">🥈</span>
+              <div class="tier-info">
+                <span class="tier-name">銀卡會員</span>
+                <span class="tier-benefit">儲值滿 $5,000 享 95 折</span>
+              </div>
+            </div>
+            <div class="tier-item">
+              <span class="tier-icon">🥇</span>
+              <div class="tier-info">
+                <span class="tier-name">金卡會員</span>
+                <span class="tier-benefit">儲值滿 $30,000 享 9 折</span>
+              </div>
+            </div>
+            <div class="tier-item highlight">
+              <span class="tier-icon">💎</span>
+              <div class="tier-info">
+                <span class="tier-name">白金會員</span>
+                <span class="tier-benefit">儲值滿 $100,000 享 85 折</span>
+              </div>
+            </div>
+          </div>
+          
+          <a href="https://lin.ee/JQQdhG6" target="_blank" class="btn btn-line btn-xl">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.193 0-.378-.104-.481-.281l-2.432-3.308v2.962c0 .349-.282.63-.63.63-.345 0-.627-.281-.627-.63V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.478.281l2.439 3.308V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-5.741 0c0 .349-.282.63-.631.63-.345 0-.627-.281-.627-.63V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.63H4.917c-.345 0-.63-.281-.63-.63V8.108c0-.345.285-.63.63-.63.349 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+            </svg>
+            LINE 登入 / 註冊
+          </a>
+          
+          <p class="guest-note">
+            目前僅支援 LINE 登入，登入後即可開始儲值
+          </p>
+        </div>
+      </div>
+      
+      <!-- 已登入狀態 -->
+      <div class="member-view" id="memberView" style="display: none;">
+        <div class="member-header">
+          <div class="member-info">
+            <div class="member-avatar" id="memberAvatar">👤</div>
+            <div class="member-details">
+              <h1 id="memberName">會員</h1>
+              <div class="member-tier" id="memberTierBadge">
+                <span class="tier-badge basic">一般會員</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-ghost" id="logoutBtn">登出</button>
+        </div>
+        
+        <!-- 快速資訊卡 -->
+        <div class="quick-stats">
+          <div class="stat-card balance">
+            <div class="stat-icon">💰</div>
+            <div class="stat-content">
+              <span class="stat-label">目前餘額</span>
+              <span class="stat-value">NT$ <span id="balanceDisplay">0</span></span>
+            </div>
+            <a href="/member/deposit" class="stat-action">儲值 →</a>
+          </div>
+          
+          <div class="stat-card discount">
+            <div class="stat-icon">🏷️</div>
+            <div class="stat-content">
+              <span class="stat-label">會員折扣</span>
+              <span class="stat-value" id="discountDisplay">原價</span>
+            </div>
+          </div>
+          
+          <div class="stat-card total">
+            <div class="stat-icon">📊</div>
+            <div class="stat-content">
+              <span class="stat-label">累計儲值</span>
+              <span class="stat-value">NT$ <span id="totalDepositDisplay">0</span></span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 升級進度 -->
+        <div class="upgrade-section" id="upgradeSection">
+          <div class="upgrade-card">
+            <div class="upgrade-header">
+              <span class="upgrade-title">🎯 升級進度</span>
+              <span class="upgrade-target">下一等級：<strong id="nextTierName">銀卡會員</strong></span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-info">
+              <span>再儲值 <strong id="upgradeNeeded">$5,000</strong> 即可升級</span>
+              <span id="progressPercent">0%</span>
+            </div>
+            <a href="/member/deposit" class="btn btn-primary">立即儲值升級 →</a>
+          </div>
+        </div>
+        
+        <!-- 會員權益 -->
+        <div class="benefits-section">
+          <h2>🎁 會員權益</h2>
+          <div class="benefits-grid" id="benefitsGrid">
+            <!-- 由 JS 動態生成 -->
+          </div>
+        </div>
+        
+        <!-- 快速入口 -->
+        <div class="quick-links">
+          <a href="/member/deposit" class="quick-link">
+            <span class="link-icon">💳</span>
+            <span class="link-text">儲值</span>
+          </a>
+          <a href="/member/orders" class="quick-link">
+            <span class="link-icon">📋</span>
+            <span class="link-text">訂單</span>
+          </a>
+          <a href="/member/history" class="quick-link">
+            <span class="link-icon">📜</span>
+            <span class="link-text">儲值記錄</span>
+          </a>
+          <a href="/order" class="quick-link">
+            <span class="link-icon">🎨</span>
+            <span class="link-text">開始設計</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .member-page {
+    padding-top: calc(var(--header-height) + var(--space-8) + 4px);
+    padding-bottom: var(--space-16);
+    min-height: 100vh;
+    background: var(--cream);
+  }
+  
+  .container {
+    max-width: 900px;
+  }
+  
+  /* ===== 未登入狀態 ===== */
+  .guest-card {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--space-12);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .guest-icon {
+    font-size: 64px;
+    margin-bottom: var(--space-4);
+  }
+  
+  .guest-card h1 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gray-800);
+    margin-bottom: var(--space-2);
+  }
+  
+  .guest-card > p {
+    color: var(--gray-500);
+    margin-bottom: var(--space-8);
+  }
+  
+  .tier-preview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 400px;
+    margin: 0 auto var(--space-8);
+  }
+  
+  .tier-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    text-align: left;
+  }
+  
+  .tier-item.highlight {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+    border: 2px solid rgba(139, 92, 246, 0.2);
+  }
+  
+  .tier-icon {
+    font-size: 28px;
+  }
+  
+  .tier-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tier-name {
+    font-weight: 700;
+    color: var(--gray-800);
+  }
+  
+  .tier-benefit {
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+  
+  .guest-note {
+    font-size: 13px;
+    color: var(--gray-400);
+    margin-top: var(--space-4);
+  }
+  
+  /* ===== 已登入狀態 ===== */
+  .member-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-8);
+  }
+  
+  .member-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  
+  .member-avatar {
+    width: 64px;
+    height: 64px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+  
+  .member-details h1 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--gray-800);
+    margin-bottom: var(--space-1);
+  }
+  
+  .tier-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .tier-badge.basic {
+    background: var(--gray-200);
+    color: var(--gray-600);
+  }
+  
+  .tier-badge.silver {
+    background: linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 100%);
+    color: #4B5563;
+  }
+  
+  .tier-badge.gold {
+    background: linear-gradient(135deg, #FEF3C7 0%, #FCD34D 100%);
+    color: #92400E;
+  }
+  
+  .tier-badge.platinum {
+    background: linear-gradient(135deg, #EDE9FE 0%, #C4B5FD 100%);
+    color: #5B21B6;
+  }
+  
+  /* 快速統計 */
+  .quick-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+  
+  @media (max-width: 768px) {
+    .quick-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .stat-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  
+  .stat-card.balance {
+    background: linear-gradient(135deg, #2E3B6B 0%, #3D4F8F 100%);
+    color: white;
+  }
+  
+  .stat-card.balance .stat-label {
+    color: rgba(255,255,255,0.7);
+  }
+  
+  .stat-icon {
+    font-size: 32px;
+  }
+  
+  .stat-content {
+    flex: 1;
+  }
+  
+  .stat-label {
+    display: block;
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-bottom: 2px;
+  }
+  
+  .stat-value {
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gray-800);
+  }
+  
+  .stat-card.balance .stat-value {
+    color: white;
+  }
+  
+  .stat-action {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-4);
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+  }
+  
+  .stat-action:hover {
+    color: white;
+  }
+  
+  /* 升級進度 */
+  .upgrade-section {
+    margin-bottom: var(--space-8);
+  }
+  
+  .upgrade-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow);
+  }
+  
+  .upgrade-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+  
+  .upgrade-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-800);
+  }
+  
+  .upgrade-target {
+    font-size: 14px;
+    color: var(--gray-500);
+  }
+  
+  .upgrade-target strong {
+    color: var(--teal);
+  }
+  
+  .progress-bar {
+    height: 12px;
+    background: var(--gray-200);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: var(--space-3);
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal) 0%, var(--rainbow-4) 100%);
+    border-radius: var(--radius-full);
+    transition: width 0.5s ease;
+  }
+  
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-bottom: var(--space-4);
+  }
+  
+  .progress-info strong {
+    color: var(--primary);
+  }
+  
+  .upgrade-card .btn {
+    width: 100%;
+  }
+  
+  /* 會員權益 */
+  .benefits-section {
+    margin-bottom: var(--space-8);
+  }
+  
+  .benefits-section h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-4);
+  }
+  
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+  
+  @media (max-width: 640px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .benefit-icon {
+    font-size: 24px;
+  }
+  
+  .benefit-text {
+    font-size: 14px;
+    color: var(--gray-700);
+  }
+  
+  /* 快速入口 */
+  .quick-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+  
+  @media (max-width: 640px) {
+    .quick-links {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .quick-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+  }
+  
+  .quick-link:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+  }
+  
+  .link-icon {
+    font-size: 28px;
+  }
+  
+  .link-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-700);
+  }
+  
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-xl {
+    padding: var(--space-4) var(--space-8);
+    font-size: 16px;
+  }
+  
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+  }
+  
+  .btn-line {
+    background: var(--line-green);
+    color: white;
+  }
+  
+  .btn-line:hover {
+    background: #05B04C;
+  }
+  
+  .btn-ghost {
+    background: transparent;
+    color: var(--gray-500);
+  }
+  
+  .btn-ghost:hover {
+    background: var(--gray-100);
+    color: var(--gray-700);
+  }
+</style>
+
+<script>
+  import { getMember, saveMember, clearMember, memberTiers, getUpgradeAmount, type Member } from '../lib/member';
+  import { formatPrice } from '../lib/cart';
+  
+  // DOM 元素
+  const guestView = document.getElementById('guestView');
+  const memberView = document.getElementById('memberView');
+  const memberName = document.getElementById('memberName');
+  const memberTierBadge = document.getElementById('memberTierBadge');
+  const balanceDisplay = document.getElementById('balanceDisplay');
+  const discountDisplay = document.getElementById('discountDisplay');
+  const totalDepositDisplay = document.getElementById('totalDepositDisplay');
+  const upgradeSection = document.getElementById('upgradeSection');
+  const nextTierName = document.getElementById('nextTierName');
+  const progressFill = document.getElementById('progressFill');
+  const upgradeNeeded = document.getElementById('upgradeNeeded');
+  const progressPercent = document.getElementById('progressPercent');
+  const benefitsGrid = document.getElementById('benefitsGrid');
+  const logoutBtn = document.getElementById('logoutBtn');
+  
+  // 渲染會員資訊
+  function renderMemberInfo() {
+    const member = getMember();
+    
+    if (!member) {
+      guestView!.style.display = 'block';
+      memberView!.style.display = 'none';
+      return;
+    }
+    
+    guestView!.style.display = 'none';
+    memberView!.style.display = 'block';
+    
+    const tier = memberTiers[member.tier];
+    
+    // 基本資訊
+    memberName!.textContent = member.name;
+    memberTierBadge!.innerHTML = `<span class="tier-badge ${member.tier}">${getTierIcon(member.tier)} ${tier.name}</span>`;
+    balanceDisplay!.textContent = formatPrice(member.balance);
+    discountDisplay!.textContent = tier.discountLabel;
+    totalDepositDisplay!.textContent = formatPrice(member.totalDeposit);
+    
+    // 升級進度
+    const upgradeInfo = getUpgradeAmount(member.totalDeposit);
+    if (upgradeInfo) {
+      upgradeSection!.style.display = 'block';
+      nextTierName!.textContent = upgradeInfo.nextTier.name;
+      upgradeNeeded!.textContent = `$${formatPrice(upgradeInfo.needed)}`;
+      
+      // 計算進度百分比
+      const currentTierMin = tier.minDeposit;
+      const nextTierMin = upgradeInfo.nextTier.minDeposit;
+      const progress = ((member.totalDeposit - currentTierMin) / (nextTierMin - currentTierMin)) * 100;
+      progressFill!.style.width = `${Math.min(progress, 100)}%`;
+      progressPercent!.textContent = `${Math.round(progress)}%`;
+    } else {
+      upgradeSection!.style.display = 'none';
+    }
+    
+    // 會員權益
+    benefitsGrid!.innerHTML = tier.benefits.map(benefit => `
+      <div class="benefit-item">
+        <span class="benefit-icon">✓</span>
+        <span class="benefit-text">${benefit}</span>
+      </div>
+    `).join('');
+  }
+  
+  function getTierIcon(tier: string): string {
+    const icons: Record<string, string> = {
+      basic: '👤',
+      silver: '🥈',
+      gold: '🥇',
+      platinum: '💎'
+    };
+    return icons[tier] || '👤';
+  }
+  
+  // 登出
+  logoutBtn?.addEventListener('click', () => {
+    if (confirm('確定要登出嗎？')) {
+      clearMember();
+      renderMemberInfo();
+    }
+  });
+  
+  // 監聽會員更新
+  window.addEventListener('member-updated', () => {
+    renderMemberInfo();
+  });
+  
+  // 初始化
+  renderMemberInfo();
+  
+  // ===== 測試用：模擬登入 =====
+  // 開發階段可以用這個來測試
+  // 之後會改成真正的 LINE Login
+  (window as any).testLogin = (tier: 'basic' | 'silver' | 'gold' | 'platinum' = 'basic') => {
+    const testMembers: Record<string, Partial<Member>> = {
+      basic: { totalDeposit: 0, balance: 0 },
+      silver: { totalDeposit: 5000, balance: 2000 },
+      gold: { totalDeposit: 35000, balance: 8000 },
+      platinum: { totalDeposit: 120000, balance: 25000 }
+    };
+    
+    const member: Member = {
+      id: 'test_' + Date.now(),
+      name: '測試會員',
+      balance: testMembers[tier].balance || 0,
+      totalDeposit: testMembers[tier].totalDeposit || 0,
+      tier: tier,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    
+    saveMember(member);
+    renderMemberInfo();
+    console.log('已模擬登入為', tier, '會員');
+  };
+  
+  console.log('💡 開發測試：在 Console 輸入 testLogin("silver") 可模擬不同等級會員登入');
+</script>
