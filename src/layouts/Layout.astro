@@ -4,7 +4,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = '平價設計服務，讓每個小店都有專業形象' } = Astro.props;
+const { title, description = '自助式設計平台，透明價格、快速交件，讓每個品牌都能擁有專業設計' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -13,17 +13,19 @@ const { title, description = '平價設計服務，讓每個小店都有專業�
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content={description}>
-  <title>{title} | 添喜設計</title>
+  <title>{title} | 添喜設計 Tensy Design</title>
   
-  <!-- Fonts -->
+  <!-- Fonts - 使用更有個性的字體組合 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Favicon (之後換成添添吉祥物) -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/cursor.png">
 </head>
 <body>
+  <!-- 頂部彩虹條 -->
+  <div class="rainbow-bar"></div>
   <slot />
 </body>
 </html>
@@ -31,18 +33,27 @@ const { title, description = '平價設計服務，讓每個小店都有專業�
 <style is:global>
   /* ===== CSS Variables ===== */
   :root {
-    /* Brand Colors */
+    /* Brand Colors - 添喜彩虹系 */
     --primary: #2E3B6B;
     --primary-light: #3D4F8F;
     --primary-dark: #1E2A4A;
-    --accent: #FF6B5B;
-    --accent-hover: #FF5242;
-    --teal: #00B4A0;
-    --teal-light: #00D4BC;
+    
+    /* Rainbow Palette */
+    --rainbow-1: #FF6B6B;
+    --rainbow-2: #FF8E53;
+    --rainbow-3: #FFCD56;
+    --rainbow-4: #4ECDC4;
+    --rainbow-5: #45B7D1;
+    --rainbow-6: #96E6A1;
+    
+    --accent: #FF6B6B;
+    --accent-hover: #FF5252;
+    --teal: #4ECDC4;
+    --teal-light: #6EE7DE;
     
     /* Neutral Colors */
-    --cream: #FFF9F0;
-    --cream-dark: #FFF0E0;
+    --cream: #FFFBF5;
+    --cream-dark: #FFF5E6;
     --white: #FFFFFF;
     --gray-50: #F8FAFC;
     --gray-100: #F1F5F9;
@@ -62,17 +73,30 @@ const { title, description = '平價設計服務，讓每個小店都有專業�
     --line-green: #06C755;
     --shopee-orange: #EE4D2D;
     
+    /* Rainbow Gradient */
+    --gradient-rainbow: linear-gradient(90deg, 
+      var(--rainbow-1) 0%, 
+      var(--rainbow-2) 20%, 
+      var(--rainbow-3) 40%, 
+      var(--rainbow-4) 60%, 
+      var(--rainbow-5) 80%, 
+      var(--rainbow-6) 100%
+    );
+    
     /* Shadows */
     --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
     --shadow: 0 4px 20px rgba(0,0,0,0.08);
     --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
-    --shadow-accent: 0 4px 20px rgba(255,107,91,0.3);
+    --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+    --shadow-accent: 0 4px 20px rgba(255,107,83,0.3);
+    --shadow-rainbow: 0 4px 30px rgba(78, 205, 196, 0.25);
     
     /* Border Radius */
     --radius-sm: 8px;
     --radius: 12px;
     --radius-lg: 16px;
     --radius-xl: 24px;
+    --radius-2xl: 32px;
     --radius-full: 9999px;
     
     /* Spacing */
@@ -85,14 +109,17 @@ const { title, description = '平價設計服務，讓每個小店都有專業�
     --space-8: 32px;
     --space-10: 40px;
     --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
     
     /* Typography */
-    --font-sans: 'Noto Sans TC', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-display: 'Noto Sans TC', sans-serif; /* 之後可換成圓體 */
+    --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Outfit', 'Noto Sans TC', sans-serif;
+    --font-mono: 'Space Grotesk', monospace;
     
     /* Layout */
     --max-width: 1400px;
-    --header-height: 72px;
+    --header-height: 80px;
   }
   
   /* ===== Reset ===== */
@@ -114,6 +141,18 @@ const { title, description = '平價設計服務，讓每個小店都有專業�
     color: var(--gray-800);
     line-height: 1.6;
     min-height: 100vh;
+    cursor: url('/images/cursor.png'), auto;
+  }
+  
+  /* Rainbow Bar */
+  .rainbow-bar {
+    height: 4px;
+    background: var(--gradient-rainbow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
   }
   
   img, svg {
@@ -121,9 +160,12 @@ const { title, description = '平價設計服務，讓每個小店都有專業�
     max-width: 100%;
   }
   
+  button, a {
+    cursor: url('/images/cursor.png'), pointer;
+  }
+  
   button {
     font-family: inherit;
-    cursor: pointer;
   }
   
   input, select, textarea {
@@ -133,6 +175,12 @@ const { title, description = '平價設計服務，讓每個小店都有專業�
   a {
     color: inherit;
     text-decoration: none;
+  }
+  
+  /* Selection */
+  ::selection {
+    background: var(--teal);
+    color: white;
   }
   
   /* ===== Utility Classes ===== */

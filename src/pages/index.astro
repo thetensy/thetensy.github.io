@@ -1,204 +1,434 @@
 ---
 // 添喜設計首頁
-// 簡潔的品牌介紹與入口
+// Fancy Brand, Tensy Made!
 
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 ---
 
-<Layout title="平價設計服務">
+<Layout title="為您的品牌增添喜悅">
   <Header />
   
-  <main class="hero">
-    <div class="hero-content">
-      <span class="hero-badge">🎨 平價設計服務</span>
-      <h1 class="hero-title">
-        讓每個小店<br>
-        都有<span class="highlight">專業形象</span>
-      </h1>
-      <p class="hero-desc">
-        Logo、名片、菜單、社群圖⋯⋯<br>
-        選風格、填資料，設計師為你量身打造
-      </p>
-      
-      <div class="hero-cta">
-        <a href="/order" class="btn btn-primary btn-lg">
-          開始設計 →
-        </a>
-        <a href="/portfolio" class="btn btn-ghost btn-lg">
-          看作品集
-        </a>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-shape shape-1"></div>
+        <div class="hero-shape shape-2"></div>
+        <div class="hero-shape shape-3"></div>
       </div>
       
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-number">500+</span>
-          <span class="stat-label">完成設計</span>
+      <div class="hero-content container">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Fancy Brand, Tensy Made!
+          </div>
+          
+          <h1 class="hero-title">
+            為您的品牌<br>
+            <span class="gradient-text">增添喜悅</span>
+          </h1>
+          
+          <p class="hero-desc">
+            自助式設計平台，透明價格、快速交件<br>
+            讓每個品牌都能擁有專業設計
+          </p>
+          
+          <div class="hero-cta">
+            <a href="/order" class="btn btn-primary btn-xl">
+              <span>開始設計</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="/flow" class="btn btn-ghost btn-xl">
+              了解流程
+            </a>
+          </div>
+          
+          <div class="hero-trust">
+            <div class="trust-avatars">
+              <div class="avatar" style="background: var(--rainbow-1);">👩‍💼</div>
+              <div class="avatar" style="background: var(--rainbow-3);">👨‍🍳</div>
+              <div class="avatar" style="background: var(--rainbow-4);">👩‍🎨</div>
+              <div class="avatar" style="background: var(--rainbow-5);">👨‍💻</div>
+            </div>
+            <p><strong>500+</strong> 品牌選擇添喜</p>
+          </div>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-number">98%</span>
-          <span class="stat-label">客戶滿意</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-number">$990</span>
-          <span class="stat-label">Logo 起</span>
+        
+        <div class="hero-visual">
+          <div class="tenten-container">
+            <img src="/images/tenten.png" alt="添添 - 添喜設計吉祥物" class="tenten-img" />
+            <div class="tenten-bubble">
+              <p>準備好讓品牌<br><strong>閃閃發光</strong>了嗎？✨</p>
+            </div>
+          </div>
+          
+          <div class="floating-cards">
+            <div class="float-card card-1">
+              <span class="card-emoji">🎨</span>
+              <span class="card-text">Logo 設計</span>
+              <span class="card-price">$990 起</span>
+            </div>
+            <div class="float-card card-2">
+              <span class="card-emoji">💼</span>
+              <span class="card-text">名片設計</span>
+              <span class="card-tag">即將推出</span>
+            </div>
+            <div class="float-card card-3">
+              <span class="card-emoji">🌐</span>
+              <span class="card-text">網站設計</span>
+              <span class="card-price">$5,000 起</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+      
+      <div class="hero-scroll">
+        <span>往下探索</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
     
-    <div class="hero-visual">
-      <!-- 之後放作品展示或添添吉祥物 -->
-      <div class="visual-placeholder">
-        <span>🎨</span>
+    <!-- Services Section -->
+    <section class="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">SERVICES</span>
+          <h2 class="section-title">我們的服務</h2>
+          <p class="section-desc">從品牌識別到數位呈現，一站式搞定</p>
+        </div>
+        
+        <div class="services-grid">
+          <a href="/order?product=logo" class="service-card available">
+            <div class="service-icon" style="--accent: var(--rainbow-1);">🎨</div>
+            <div class="service-content">
+              <h3>Logo 設計</h3>
+              <p>專屬品牌識別，讓顧客一眼記住你</p>
+              <div class="service-meta">
+                <span class="price">NT$ 990 起</span>
+                <span class="arrow">→</span>
+              </div>
+            </div>
+          </a>
+          
+          <div class="service-card coming-soon">
+            <div class="service-icon" style="--accent: var(--rainbow-2);">💼</div>
+            <div class="service-content">
+              <h3>名片設計</h3>
+              <p>專業名片，提升品牌形象</p>
+              <div class="service-meta">
+                <span class="tag">即將推出</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="service-card coming-soon">
+            <div class="service-icon" style="--accent: var(--rainbow-3);">🍽️</div>
+            <div class="service-content">
+              <h3>菜單設計</h3>
+              <p>精美菜單，提升點餐體驗</p>
+              <div class="service-meta">
+                <span class="tag">即將推出</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="service-card coming-soon">
+            <div class="service-icon" style="--accent: var(--rainbow-4);">📱</div>
+            <div class="service-content">
+              <h3>社群圖片</h3>
+              <p>IG、FB 貼文與限動設計</p>
+              <div class="service-meta">
+                <span class="tag">即將推出</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="service-card coming-soon">
+            <div class="service-icon" style="--accent: var(--rainbow-5);">📄</div>
+            <div class="service-content">
+              <h3>DM 傳單</h3>
+              <p>吸睛傳單，有效宣傳</p>
+              <div class="service-meta">
+                <span class="tag">即將推出</span>
+              </div>
+            </div>
+          </div>
+          
+          <a href="/order?product=website" class="service-card available">
+            <div class="service-icon" style="--accent: var(--rainbow-6);">🌐</div>
+            <div class="service-content">
+              <h3>網站設計</h3>
+              <p>簡潔單頁網站，建立線上門面</p>
+              <div class="service-meta">
+                <span class="price">NT$ 5,000 起</span>
+                <span class="arrow">→</span>
+              </div>
+            </div>
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
+    
+    <!-- Why Choose Us -->
+    <section class="why-us">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">WHY TENSY</span>
+          <h2 class="section-title">為什麼選擇添喜？</h2>
+        </div>
+        
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-number">01</div>
+            <h3>透明定價</h3>
+            <p>網站直接看到價格，沒有隱藏費用，預算好掌控</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-number">02</div>
+            <h3>快速交件</h3>
+            <p>最快 2 個工作天完成，讓您的品牌快速上線</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-number">03</div>
+            <h3>專業品質</h3>
+            <p>資深設計師操刀，每件作品都是原創設計</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-number">04</div>
+            <h3>售後保障</h3>
+            <p>提供免費修改次數，直到您滿意為止</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Process Preview -->
+    <section class="process-preview">
+      <div class="container">
+        <div class="process-content">
+          <div class="process-text">
+            <span class="section-tag">HOW IT WORKS</span>
+            <h2 class="section-title">簡單流程，輕鬆下單</h2>
+            <p class="section-desc">
+              選風格、填資料、付款，三步驟完成下單<br>
+              讓添添幫您打造專屬設計！
+            </p>
+            <a href="/flow" class="btn btn-secondary btn-lg">
+              查看完整流程 →
+            </a>
+          </div>
+          
+          <div class="process-steps">
+            <div class="mini-step">
+              <div class="step-num" style="--color: var(--rainbow-1);">1</div>
+              <span>選擇風格</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="mini-step">
+              <div class="step-num" style="--color: var(--rainbow-3);">2</div>
+              <span>填寫資料</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="mini-step">
+              <div class="step-num" style="--color: var(--rainbow-4);">3</div>
+              <span>付款下單</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="mini-step">
+              <div class="step-num" style="--color: var(--rainbow-5);">4</div>
+              <span>收到設計</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-content">
+            <h2>準備好讓品牌閃閃發光了嗎？</h2>
+            <p>現在就開始，讓添添幫您打造專屬設計！</p>
+            <a href="/order" class="btn btn-white btn-xl">
+              立即開始 →
+            </a>
+          </div>
+          <div class="cta-visual">
+            <img src="/images/tenten.png" alt="添添" class="cta-tenten" />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="/images/tenten.png" alt="添添" class="footer-icon" />
+              <div>
+                <h3>添喜設計</h3>
+                <span>Tensy Design</span>
+              </div>
+            </div>
+            <p class="footer-tagline">Fancy Brand, Tensy Made!<br>為您的品牌增添喜悅 ✨</p>
+          </div>
+          
+          <div class="footer-links">
+            <div class="footer-col">
+              <h4>服務項目</h4>
+              <a href="/order?product=logo">Logo 設計</a>
+              <a href="/order?product=website">網站設計</a>
+              <a href="/order">所有服務</a>
+            </div>
+            
+            <div class="footer-col">
+              <h4>關於我們</h4>
+              <a href="/about">關於添喜</a>
+              <a href="/flow">下單流程</a>
+              <a href="/portfolio">作品集</a>
+            </div>
+            
+            <div class="footer-col">
+              <h4>聯絡我們</h4>
+              <a href="https://line.me/ti/p/@tensy" target="_blank">LINE: @tensy</a>
+              <a href="mailto:hello@thetensy.com">hello@thetensy.com</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>© 2025 添喜設計 Tensy Design. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   </main>
-  
-  <!-- 服務項目 -->
-  <section class="services container">
-    <h2 class="services-title">我們的服務</h2>
-    
-    <div class="services-grid">
-      <a href="/order?product=logo" class="service-card">
-        <span class="service-emoji">🎨</span>
-        <h3 class="service-name">Logo 設計</h3>
-        <p class="service-price">$990 起</p>
-      </a>
-      
-      <a href="/order?product=namecard" class="service-card disabled">
-        <span class="service-emoji">💼</span>
-        <h3 class="service-name">名片設計</h3>
-        <p class="service-price">即將推出</p>
-      </a>
-      
-      <a href="/order?product=menu" class="service-card disabled">
-        <span class="service-emoji">🍽️</span>
-        <h3 class="service-name">菜單設計</h3>
-        <p class="service-price">即將推出</p>
-      </a>
-      
-      <a href="/order?product=social" class="service-card disabled">
-        <span class="service-emoji">📱</span>
-        <h3 class="service-name">社群圖片</h3>
-        <p class="service-price">即將推出</p>
-      </a>
-      
-      <a href="/order?product=dm" class="service-card disabled">
-        <span class="service-emoji">📄</span>
-        <h3 class="service-name">DM 傳單</h3>
-        <p class="service-price">即將推出</p>
-      </a>
-      
-      <a href="/order?product=website" class="service-card">
-        <span class="service-emoji">🌐</span>
-        <h3 class="service-name">網站設計</h3>
-        <p class="service-price">$5,000 起</p>
-      </a>
-    </div>
-  </section>
-  
-  <!-- 流程說明 -->
-  <section class="process">
-    <div class="container">
-      <h2 class="process-title">簡單三步驟</h2>
-      
-      <div class="process-steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3 class="step-title">選擇風格</h3>
-          <p class="step-desc">瀏覽風格參考，找到你喜歡的方向</p>
-        </div>
-        
-        <div class="step-arrow">→</div>
-        
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3 class="step-title">填寫資料</h3>
-          <p class="step-desc">告訴我們品牌名稱和偏好</p>
-        </div>
-        
-        <div class="step-arrow">→</div>
-        
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3 class="step-title">等待交件</h3>
-          <p class="step-desc">設計師為你量身打造</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <div class="footer-brand">
-        <div class="footer-logo">🎨 添喜設計</div>
-        <p class="footer-tagline">平價設計服務，讓每個小店都有專業形象</p>
-      </div>
-      
-      <div class="footer-links">
-        <a href="https://line.me/ti/p/@tensy" target="_blank">LINE 諮詢</a>
-        <a href="/about">關於我們</a>
-        <a href="/portfolio">作品集</a>
-      </div>
-      
-      <div class="footer-copy">
-        © 2025 添喜設計 TheTensy. All rights reserved.
-      </div>
-    </div>
-  </footer>
 </Layout>
 
 <style>
-  /* Hero */
+  /* ===== Hero Section ===== */
   .hero {
-    min-height: calc(100vh - var(--header-height));
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: var(--space-12);
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: var(--space-12) var(--space-6);
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--header-height);
+    overflow: hidden;
   }
   
-  @media (max-width: 768px) {
-    .hero {
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+  }
+  
+  .shape-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--rainbow-4);
+    top: -200px;
+    right: -100px;
+  }
+  
+  .shape-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--rainbow-1);
+    bottom: 100px;
+    left: -100px;
+  }
+  
+  .shape-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--rainbow-3);
+    top: 50%;
+    left: 40%;
+  }
+  
+  .hero-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+    padding: var(--space-12) var(--space-6);
+    position: relative;
+    z-index: 1;
+  }
+  
+  @media (max-width: 1024px) {
+    .hero-content {
       grid-template-columns: 1fr;
       text-align: center;
-      padding-top: var(--space-8);
+      padding: var(--space-8) var(--space-6);
     }
   }
   
   .hero-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
     padding: var(--space-2) var(--space-4);
-    background: var(--cream-dark);
+    background: white;
     border-radius: var(--radius-full);
     font-size: 14px;
     font-weight: 600;
     color: var(--primary);
-    margin-bottom: var(--space-4);
+    box-shadow: var(--shadow);
+    margin-bottom: var(--space-6);
+  }
+  
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--teal);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
   }
   
   .hero-title {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 900;
-    line-height: 1.2;
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.1;
     color: var(--gray-800);
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-6);
   }
   
-  .hero-title .highlight {
-    color: var(--accent);
+  .gradient-text {
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   
   .hero-desc {
     font-size: 18px;
     color: var(--gray-600);
-    line-height: 1.7;
+    line-height: 1.8;
     margin-bottom: var(--space-8);
   }
   
@@ -208,242 +438,676 @@ import Header from '../components/Header.astro';
     margin-bottom: var(--space-10);
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .hero-cta {
       justify-content: center;
     }
   }
   
-  .hero-stats {
+  .hero-trust {
     display: flex;
     align-items: center;
-    gap: var(--space-6);
+    gap: var(--space-4);
   }
   
-  @media (max-width: 768px) {
-    .hero-stats {
+  @media (max-width: 1024px) {
+    .hero-trust {
       justify-content: center;
     }
   }
   
-  .stat {
+  .trust-avatars {
     display: flex;
-    flex-direction: column;
   }
   
-  .stat-number {
-    font-size: 28px;
-    font-weight: 900;
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 3px solid white;
+    margin-left: -12px;
+  }
+  
+  .avatar:first-child {
+    margin-left: 0;
+  }
+  
+  .hero-trust p {
+    font-size: 14px;
+    color: var(--gray-600);
+  }
+  
+  .hero-trust strong {
     color: var(--primary);
   }
   
-  .stat-label {
-    font-size: 13px;
-    color: var(--gray-500);
-  }
-  
-  .stat-divider {
-    width: 1px;
-    height: 40px;
-    background: var(--gray-300);
-  }
-  
+  /* Hero Visual */
   .hero-visual {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  .visual-placeholder {
-    width: 400px;
-    height: 400px;
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 120px;
-    box-shadow: var(--shadow-lg);
-  }
-  
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .hero-visual {
       display: none;
     }
   }
   
-  /* Services */
-  .services {
-    padding: var(--space-12) var(--space-6);
-    background: var(--white);
+  .tenten-container {
+    position: relative;
   }
   
-  .services-title {
-    font-size: 32px;
-    font-weight: 900;
-    text-align: center;
+  .tenten-img {
+    width: 320px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .tenten-bubble {
+    position: absolute;
+    top: -20px;
+    right: -140px;
+    background: white;
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .tenten-bubble::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 10px solid transparent;
+    border-right-color: white;
+  }
+  
+  .floating-cards {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  
+  .float-card {
+    position: absolute;
+    background: white;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 13px;
+    animation: float 5s ease-in-out infinite;
+  }
+  
+  .card-1 {
+    top: 10%;
+    left: -60px;
+    animation-delay: 0s;
+  }
+  
+  .card-2 {
+    bottom: 30%;
+    left: -80px;
+    animation-delay: 1s;
+  }
+  
+  .card-3 {
+    bottom: 10%;
+    right: -40px;
+    animation-delay: 2s;
+  }
+  
+  .card-emoji {
+    font-size: 20px;
+  }
+  
+  .card-text {
+    font-weight: 600;
     color: var(--gray-800);
-    margin-bottom: var(--space-10);
+  }
+  
+  .card-price {
+    font-size: 12px;
+    color: var(--teal);
+    font-weight: 600;
+  }
+  
+  .card-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--gray-100);
+    border-radius: var(--radius-full);
+    color: var(--gray-500);
+  }
+  
+  /* Scroll indicator */
+  .hero-scroll {
+    position: absolute;
+    bottom: var(--space-8);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--gray-400);
+    font-size: 12px;
+  }
+  
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gray-300), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+  
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  
+  /* ===== Services Section ===== */
+  .services {
+    padding: var(--space-20) 0;
+    background: white;
+  }
+  
+  .section-header {
+    margin-bottom: var(--space-12);
+  }
+  
+  .section-header.center {
+    text-align: center;
+  }
+  
+  .section-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--teal);
+    margin-bottom: var(--space-3);
+  }
+  
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    color: var(--gray-800);
+    margin-bottom: var(--space-3);
+  }
+  
+  .section-desc {
+    font-size: 16px;
+    color: var(--gray-500);
   }
   
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-5);
-    max-width: 900px;
-    margin: 0 auto;
+  }
+  
+  @media (max-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
   }
   
   .service-card {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    gap: var(--space-4);
     padding: var(--space-6);
     background: var(--cream);
-    border-radius: var(--radius-lg);
-    text-align: center;
-    transition: all 0.2s ease;
+    border-radius: var(--radius-xl);
+    transition: all 0.3s ease;
   }
   
-  .service-card:not(.disabled):hover {
+  .service-card.available:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
   }
   
-  .service-card.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  .service-card.coming-soon {
+    opacity: 0.6;
   }
   
-  .service-emoji {
-    font-size: 40px;
-    margin-bottom: var(--space-3);
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    background: white;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }
   
-  .service-name {
-    font-size: 16px;
+  .service-content h3 {
+    font-size: 18px;
     font-weight: 700;
     color: var(--gray-800);
     margin-bottom: var(--space-1);
   }
   
-  .service-price {
+  .service-content p {
     font-size: 14px;
+    color: var(--gray-500);
+    margin-bottom: var(--space-3);
+  }
+  
+  .service-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .service-meta .price {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  
+  .service-meta .arrow {
+    font-size: 18px;
+    color: var(--gray-400);
+    transition: transform 0.2s ease;
+  }
+  
+  .service-card.available:hover .arrow {
+    transform: translateX(4px);
+    color: var(--teal);
+  }
+  
+  .service-meta .tag {
+    font-size: 12px;
+    padding: 4px 12px;
+    background: var(--gray-200);
+    border-radius: var(--radius-full);
     color: var(--gray-500);
   }
   
-  /* Process */
-  .process {
-    padding: var(--space-12) var(--space-6);
-    background: var(--primary);
-    color: white;
+  /* ===== Why Us Section ===== */
+  .why-us {
+    padding: var(--space-20) 0;
+    background: var(--cream);
   }
   
-  .process-title {
-    font-size: 32px;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: var(--space-10);
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+  
+  @media (max-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .feature-card {
+    padding: var(--space-8);
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .feature-number {
+    font-family: var(--font-mono);
+    font-size: 48px;
+    font-weight: 700;
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: var(--space-4);
+  }
+  
+  .feature-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-2);
+  }
+  
+  .feature-card p {
+    font-size: 14px;
+    color: var(--gray-500);
+    line-height: 1.6;
+  }
+  
+  /* ===== Process Preview ===== */
+  .process-preview {
+    padding: var(--space-20) 0;
+    background: white;
+  }
+  
+  .process-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+  
+  @media (max-width: 1024px) {
+    .process-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+  
+  .process-text .section-title {
+    margin-bottom: var(--space-4);
+  }
+  
+  .process-text .section-desc {
+    margin-bottom: var(--space-6);
   }
   
   .process-steps {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    gap: var(--space-6);
-    max-width: 800px;
-    margin: 0 auto;
+    gap: var(--space-3);
+    flex-wrap: wrap;
   }
   
-  @media (max-width: 768px) {
-    .process-steps {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .step-arrow {
-      transform: rotate(90deg);
-    }
+  .mini-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
   }
   
-  .step {
-    text-align: center;
-    max-width: 200px;
-  }
-  
-  .step-number {
-    width: 48px;
-    height: 48px;
-    background: var(--accent);
+  .step-num {
+    width: 56px;
+    height: 56px;
+    background: var(--color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    font-weight: 900;
-    margin: 0 auto var(--space-4);
-  }
-  
-  .step-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: var(--space-2);
-  }
-  
-  .step-desc {
-    font-size: 14px;
-    opacity: 0.8;
-    line-height: 1.5;
-  }
-  
-  .step-arrow {
+    font-family: var(--font-display);
     font-size: 24px;
-    opacity: 0.5;
-    margin-top: var(--space-3);
-  }
-  
-  /* Footer */
-  .footer {
-    padding: var(--space-10) var(--space-6);
-    background: var(--gray-800);
+    font-weight: 800;
     color: white;
   }
   
-  .footer-content {
-    display: flex;
-    flex-direction: column;
+  .mini-step span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-600);
+  }
+  
+  .step-connector {
+    width: 40px;
+    height: 2px;
+    background: var(--gray-200);
+  }
+  
+  @media (max-width: 640px) {
+    .step-connector {
+      display: none;
+    }
+    
+    .process-steps {
+      gap: var(--space-6);
+    }
+  }
+  
+  /* ===== CTA Section ===== */
+  .cta-section {
+    padding: var(--space-20) 0;
+    background: var(--cream);
+  }
+  
+  .cta-card {
+    background: var(--primary);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-12);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-8);
     align-items: center;
-    text-align: center;
-    gap: var(--space-6);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .cta-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding: var(--space-10) var(--space-6);
+    }
+  }
+  
+  .cta-content h2 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 800;
+    color: white;
+    margin-bottom: var(--space-3);
+  }
+  
+  .cta-content p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: var(--space-6);
+  }
+  
+  .cta-visual {
+    position: relative;
+  }
+  
+  .cta-tenten {
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+  }
+  
+  @media (max-width: 768px) {
+    .cta-visual {
+      display: none;
+    }
+  }
+  
+  /* ===== Buttons ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  
+  .btn-lg {
+    padding: var(--space-4) var(--space-8);
+    font-size: 15px;
+  }
+  
+  .btn-xl {
+    padding: var(--space-5) var(--space-10);
+    font-size: 16px;
+  }
+  
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 20px rgba(46, 59, 107, 0.3);
+  }
+  
+  .btn-primary:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(46, 59, 107, 0.4);
+  }
+  
+  .btn-secondary {
+    background: var(--teal);
+    color: white;
+  }
+  
+  .btn-secondary:hover {
+    background: var(--teal-light);
+    transform: translateY(-2px);
+  }
+  
+  .btn-ghost {
+    background: transparent;
+    color: var(--gray-600);
+    border: 2px solid var(--gray-200);
+  }
+  
+  .btn-ghost:hover {
+    border-color: var(--gray-300);
+    background: var(--gray-50);
+  }
+  
+  .btn-white {
+    background: white;
+    color: var(--primary);
+  }
+  
+  .btn-white:hover {
+    background: var(--cream);
+    transform: translateY(-2px);
+  }
+  
+  /* ===== Footer ===== */
+  .footer {
+    background: var(--gray-800);
+    color: white;
+    padding: var(--space-16) 0 var(--space-8);
+  }
+  
+  .footer-main {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: var(--space-12);
+    margin-bottom: var(--space-12);
+  }
+  
+  @media (max-width: 768px) {
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
   }
   
   .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+  
+  .footer-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+  
+  .footer-logo h3 {
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 800;
+  }
+  
+  .footer-logo span {
+    font-size: 12px;
+    opacity: 0.6;
   }
   
   .footer-tagline {
     font-size: 14px;
     opacity: 0.7;
+    line-height: 1.7;
   }
   
   .footer-links {
-    display: flex;
-    gap: var(--space-6);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
   }
   
-  .footer-links a {
+  @media (max-width: 640px) {
+    .footer-links {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+  
+  .footer-col h4 {
     font-size: 14px;
-    opacity: 0.8;
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    opacity: 0.9;
+  }
+  
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    opacity: 0.6;
+    margin-bottom: var(--space-2);
     transition: opacity 0.2s ease;
   }
   
-  .footer-links a:hover {
+  .footer-col a:hover {
     opacity: 1;
   }
   
-  .footer-copy {
-    font-size: 12px;
+  .footer-bottom {
+    padding-top: var(--space-8);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+  }
+  
+  .footer-bottom p {
+    font-size: 13px;
     opacity: 0.5;
   }
 </style>
