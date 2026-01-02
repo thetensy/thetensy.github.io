@@ -42,7 +42,7 @@ import Header from '../components/Header.astro';
             </div>
           </div>
           
-          <a href="https://lin.ee/JQQdhG6" target="_blank" class="btn btn-line btn-xl">
+          <a href="/api/auth/line" class="btn btn-line btn-xl">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.193 0-.378-.104-.481-.281l-2.432-3.308v2.962c0 .349-.282.63-.63.63-.345 0-.627-.281-.627-.63V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.478.281l2.439 3.308V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-5.741 0c0 .349-.282.63-.631.63-.345 0-.627-.281-.627-.63V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.63H4.917c-.345 0-.63-.281-.63-.63V8.108c0-.345.285-.63.63-.63.349 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
             </svg>
@@ -50,7 +50,7 @@ import Header from '../components/Header.astro';
           </a>
           
           <p class="guest-note">
-            目前僅支援 LINE 登入，登入後即可開始儲值
+            使用 LINE 帳號快速登入，即可開始儲值享折扣
           </p>
         </div>
       </div>
@@ -569,13 +569,14 @@ import Header from '../components/Header.astro';
 </style>
 
 <script>
-  import { getMember, saveMember, clearMember, memberTiers, getUpgradeAmount, type Member } from '../lib/member';
-  import { formatPrice } from '../lib/cart';
+  import { getMember, saveMember, clearMember, memberTiers, getUpgradeAmount, type Member } from '../../lib/member';
+  import { formatPrice } from '../../lib/cart';
   
   // DOM 元素
   const guestView = document.getElementById('guestView');
   const memberView = document.getElementById('memberView');
   const memberName = document.getElementById('memberName');
+  const memberAvatar = document.getElementById('memberAvatar');
   const memberTierBadge = document.getElementById('memberTierBadge');
   const balanceDisplay = document.getElementById('balanceDisplay');
   const discountDisplay = document.getElementById('discountDisplay');
@@ -588,9 +589,31 @@ import Header from '../components/Header.astro';
   const benefitsGrid = document.getElementById('benefitsGrid');
   const logoutBtn = document.getElementById('logoutBtn');
   
+  // 從 API 取得會員資料
+  async function fetchMemberFromAPI(): Promise<Member | null> {
+    try {
+      const response = await fetch('/api/auth/me', {
+        credentials: 'include'
+      });
+      
+      if (!response.ok) return null;
+      
+      const data = await response.json();
+      if (data.member) {
+        saveMember(data.member);
+        return data.member;
+      }
+      return null;
+    } catch (error) {
+      console.log('API 不可用，使用本地資料');
+      return null;
+    }
+  }
+  
   // 渲染會員資訊
-  function renderMemberInfo() {
-    const member = getMember();
+  async function renderMemberInfo() {
+    let member = await fetchMemberFromAPI();
+    if (!member) member = getMember();
     
     if (!member) {
       guestView!.style.display = 'block';
@@ -605,6 +628,14 @@ import Header from '../components/Header.astro';
     
     // 基本資訊
     memberName!.textContent = member.name;
+    
+    // 頭像
+    if (member.avatar) {
+      memberAvatar!.innerHTML = `<img src="${member.avatar}" alt="${member.name}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
+    } else {
+      memberAvatar!.textContent = getTierIcon(member.tier);
+    }
+    
     memberTierBadge!.innerHTML = `<span class="tier-badge ${member.tier}">${getTierIcon(member.tier)} ${tier.name}</span>`;
     balanceDisplay!.textContent = formatPrice(member.balance);
     discountDisplay!.textContent = tier.discountLabel;
@@ -647,10 +678,13 @@ import Header from '../components/Header.astro';
   }
   
   // 登出
-  logoutBtn?.addEventListener('click', () => {
+  logoutBtn?.addEventListener('click', async () => {
     if (confirm('確定要登出嗎？')) {
+      try {
+        await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+      } catch (e) { /* API 不可用時忽略 */ }
       clearMember();
-      renderMemberInfo();
+      window.location.reload();
     }
   });
   
@@ -663,8 +697,6 @@ import Header from '../components/Header.astro';
   renderMemberInfo();
   
   // ===== 測試用：模擬登入 =====
-  // 開發階段可以用這個來測試
-  // 之後會改成真正的 LINE Login
   (window as any).testLogin = (tier: 'basic' | 'silver' | 'gold' | 'platinum' = 'basic') => {
     const testMembers: Record<string, Partial<Member>> = {
       basic: { totalDeposit: 0, balance: 0 },
@@ -676,6 +708,7 @@ import Header from '../components/Header.astro';
     const member: Member = {
       id: 'test_' + Date.now(),
       name: '測試會員',
+      avatar: '',
       balance: testMembers[tier].balance || 0,
       totalDeposit: testMembers[tier].totalDeposit || 0,
       tier: tier,
@@ -684,7 +717,7 @@ import Header from '../components/Header.astro';
     };
     
     saveMember(member);
-    renderMemberInfo();
+    window.location.reload();
     console.log('已模擬登入為', tier, '會員');
   };
   

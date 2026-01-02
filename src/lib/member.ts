@@ -20,6 +20,7 @@ export interface Member {
   name: string;
   email?: string;
   phone?: string;
+  avatar?: string;         // LINE 大頭貼 URL
   balance: number;         // 目前餘額
   totalDeposit: number;    // 累計儲值金額
   tier: MemberTier;

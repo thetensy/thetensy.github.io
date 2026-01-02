@@ -293,7 +293,8 @@ import Header from '../components/Header.astro';
     gap: var(--space-4);
   }
   
-  .cart-item {
+  /* 購物車項目 - 用 :global 讓動態生成的元素可以套用 */
+  :global(.cart-item) {
     background: white;
     border-radius: var(--radius-lg);
     padding: var(--space-5);
@@ -302,7 +303,7 @@ import Header from '../components/Header.astro';
     box-shadow: var(--shadow-sm);
   }
   
-  .item-preview {
+  :global(.item-preview) {
     width: 100px;
     height: 100px;
     background: var(--cream);
@@ -314,30 +315,30 @@ import Header from '../components/Header.astro';
     flex-shrink: 0;
   }
   
-  .item-details {
+  :global(.item-details) {
     flex: 1;
     min-width: 0;
   }
   
-  .item-header {
+  :global(.item-header) {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: var(--space-2);
   }
   
-  .item-name {
+  :global(.item-name) {
     font-size: 16px;
     font-weight: 700;
     color: var(--gray-800);
   }
   
-  .item-style {
+  :global(.item-style) {
     font-size: 13px;
     color: var(--gray-500);
   }
   
-  .item-brand {
+  :global(.item-brand) {
     display: inline-block;
     padding: 4px 10px;
     background: var(--primary);
@@ -348,20 +349,20 @@ import Header from '../components/Header.astro';
     margin: var(--space-2) 0;
   }
   
-  .item-plan {
+  :global(.item-plan) {
     font-size: 13px;
     color: var(--teal);
     font-weight: 500;
   }
   
-  .item-price {
+  :global(.item-price) {
     font-size: 18px;
     font-weight: 700;
     color: var(--gray-800);
     text-align: right;
   }
   
-  .remove-btn {
+  :global(.remove-btn) {
     background: none;
     border: none;
     color: var(--gray-400);
@@ -371,7 +372,7 @@ import Header from '../components/Header.astro';
     transition: color 0.2s;
   }
   
-  .remove-btn:hover {
+  :global(.remove-btn:hover) {
     color: var(--accent);
   }
   
