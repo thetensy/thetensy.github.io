@@ -138,15 +138,15 @@ export function getUpgradeAmount(totalDeposit: number): { nextTier: MemberTierIn
   return null;
 }
 
-// 儲值金額選項
+// 儲值金額選項（無贈送，純折扣制度）
 export const depositOptions = [
-  { amount: 1000, label: 'NT$ 1,000', bonus: 0 },
-  { amount: 3000, label: 'NT$ 3,000', bonus: 0 },
-  { amount: 5000, label: 'NT$ 5,000', bonus: 0, highlight: '升級銀卡' },
-  { amount: 10000, label: 'NT$ 10,000', bonus: 500, bonusLabel: '送 $500' },
-  { amount: 30000, label: 'NT$ 30,000', bonus: 2000, bonusLabel: '送 $2,000', highlight: '升級金卡' },
-  { amount: 50000, label: 'NT$ 50,000', bonus: 4000, bonusLabel: '送 $4,000' },
-  { amount: 100000, label: 'NT$ 100,000', bonus: 10000, bonusLabel: '送 $10,000', highlight: '升級白金' }
+  { amount: 1000, label: 'NT$ 1,000' },
+  { amount: 3000, label: 'NT$ 3,000' },
+  { amount: 5000, label: 'NT$ 5,000', highlight: '升級銀卡 95折' },
+  { amount: 10000, label: 'NT$ 10,000' },
+  { amount: 30000, label: 'NT$ 30,000', highlight: '升級金卡 9折' },
+  { amount: 50000, label: 'NT$ 50,000' },
+  { amount: 100000, label: 'NT$ 100,000', highlight: '升級白金 85折' }
 ];
 
 // 銀行匯款資訊

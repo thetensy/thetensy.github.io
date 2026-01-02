@@ -14,7 +14,7 @@ import Header from '../../components/Header.astro';
       <div class="page-header">
         <a href="/member" class="back-link">← 返回會員中心</a>
         <h1>💳 會員儲值</h1>
-        <p class="page-desc">儲值享折扣，大額儲值再送購物金！</p>
+        <p class="page-desc">儲值升等享折扣，消費最高 85 折！</p>
       </div>
       
       <div class="deposit-layout">
@@ -54,25 +54,21 @@ import Header from '../../components/Header.astro';
               </button>
               <button class="amount-option highlight" data-amount="5000">
                 <span class="amount-value">NT$ 5,000</span>
-                <span class="amount-tag tier">🥈 升級銀卡</span>
+                <span class="amount-tag tier">🥈 升級銀卡 95折</span>
               </button>
-              <button class="amount-option bonus" data-amount="10000" data-bonus="500">
+              <button class="amount-option" data-amount="10000">
                 <span class="amount-value">NT$ 10,000</span>
-                <span class="amount-tag bonus">🎁 送 $500</span>
               </button>
-              <button class="amount-option highlight bonus" data-amount="30000" data-bonus="2000">
+              <button class="amount-option highlight" data-amount="30000">
                 <span class="amount-value">NT$ 30,000</span>
-                <span class="amount-tag tier">🥇 升級金卡</span>
-                <span class="amount-tag bonus">🎁 送 $2,000</span>
+                <span class="amount-tag tier">🥇 升級金卡 9折</span>
               </button>
-              <button class="amount-option bonus" data-amount="50000" data-bonus="4000">
+              <button class="amount-option" data-amount="50000">
                 <span class="amount-value">NT$ 50,000</span>
-                <span class="amount-tag bonus">🎁 送 $4,000</span>
               </button>
-              <button class="amount-option highlight bonus featured" data-amount="100000" data-bonus="10000">
+              <button class="amount-option highlight featured" data-amount="100000">
                 <span class="amount-value">NT$ 100,000</span>
-                <span class="amount-tag tier">💎 升級白金</span>
-                <span class="amount-tag bonus">🎁 送 $10,000</span>
+                <span class="amount-tag tier">💎 升級白金 85折</span>
                 <span class="featured-badge">最划算</span>
               </button>
             </div>
@@ -147,15 +143,9 @@ import Header from '../../components/Header.astro';
                 <span class="summary-value">NT$ <span id="summaryAmount">0</span></span>
               </div>
               
-              <!-- 贈送金額 -->
-              <div class="summary-row bonus" id="bonusRow" style="display: none;">
-                <span>🎁 贈送購物金</span>
-                <span class="summary-value bonus-value">+NT$ <span id="summaryBonus">0</span></span>
-              </div>
-              
-              <!-- 實際入帳 -->
+              <!-- 入帳金額 -->
               <div class="summary-row total">
-                <span>實際入帳</span>
+                <span>入帳金額</span>
                 <span class="summary-value total-value">NT$ <span id="summaryTotal">0</span></span>
               </div>
               
@@ -176,6 +166,10 @@ import Header from '../../components/Header.astro';
                   <span>🎉 升級為</span>
                   <span class="new-tier" id="newTier">銀卡會員</span>
                 </div>
+                <div class="after-row discount-info" id="discountInfo" style="display: none;">
+                  <span>🏷️ 消費折扣</span>
+                  <span class="new-discount" id="newDiscount">95折</span>
+                </div>
               </div>
             </div>
             
@@ -195,7 +189,7 @@ import Header from '../../components/Header.astro';
             <ul>
               <li>儲值後餘額永久有效，不會過期</li>
               <li>會員等級依「累計儲值」計算，不會降級</li>
-              <li>贈送購物金僅限當次儲值贈送</li>
+              <li>折扣於消費時自動套用</li>
               <li>發票將於確認收款後開立電子發票</li>
             </ul>
           </div>
@@ -628,18 +622,6 @@ import Header from '../../components/Header.astro';
     color: var(--gray-800);
   }
   
-  .summary-row.bonus {
-    color: #92400E;
-    background: #FEF3C7;
-    margin: var(--space-2) calc(var(--space-6) * -1);
-    padding: var(--space-3) var(--space-6);
-  }
-  
-  .bonus-value {
-    font-weight: 700;
-    color: #92400E;
-  }
-  
   .summary-row.total {
     font-size: 16px;
     font-weight: 700;
@@ -685,8 +667,21 @@ import Header from '../../components/Header.astro';
     margin-top: var(--space-2);
   }
   
+  .after-row.discount-info {
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
   .new-tier {
     background: var(--teal);
+    color: white;
+    padding: 2px 10px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+  }
+  
+  .new-discount {
+    background: var(--primary);
     color: white;
     padding: 2px 10px;
     border-radius: var(--radius-full);
@@ -968,13 +963,13 @@ import Header from '../../components/Header.astro';
   const customWrapper = document.getElementById('customWrapper');
   const customAmount = document.getElementById('customAmount') as HTMLInputElement;
   const summaryAmount = document.getElementById('summaryAmount');
-  const bonusRow = document.getElementById('bonusRow');
-  const summaryBonus = document.getElementById('summaryBonus');
   const summaryTotal = document.getElementById('summaryTotal');
   const afterBalance = document.getElementById('afterBalance');
   const afterTotalDeposit = document.getElementById('afterTotalDeposit');
   const tierChange = document.getElementById('tierChange');
   const newTier = document.getElementById('newTier');
+  const discountInfo = document.getElementById('discountInfo');
+  const newDiscount = document.getElementById('newDiscount');
   const confirmBtn = document.getElementById('confirmBtn') as HTMLButtonElement;
   const bankModal = document.getElementById('bankModal');
   const closeModal = document.getElementById('closeModal');
@@ -985,7 +980,6 @@ import Header from '../../components/Header.astro';
   
   // 狀態
   let selectedAmount = 0;
-  let selectedBonus = 0;
   const member = getMember();
   
   // 初始化會員狀態
@@ -1020,9 +1014,8 @@ import Header from '../../components/Header.astro';
       amountOptions.forEach(o => o.classList.remove('selected'));
       option.classList.add('selected');
       
-      // 取得金額和贈送
+      // 取得金額
       selectedAmount = parseInt((option as HTMLElement).dataset.amount || '0');
-      selectedBonus = parseInt((option as HTMLElement).dataset.bonus || '0');
       
       updateSummary();
     });
@@ -1033,7 +1026,6 @@ import Header from '../../components/Header.astro';
     if (customToggle.checked) {
       customWrapper!.style.display = 'flex';
       amountOptions.forEach(o => o.classList.remove('selected'));
-      selectedBonus = 0;
       customAmount.focus();
     } else {
       customWrapper!.style.display = 'none';
@@ -1044,14 +1036,6 @@ import Header from '../../components/Header.astro';
   
   customAmount?.addEventListener('input', () => {
     selectedAmount = parseInt(customAmount.value) || 0;
-    
-    // 自動計算贈送（自訂金額也享贈送）
-    if (selectedAmount >= 100000) selectedBonus = Math.floor(selectedAmount * 0.1);
-    else if (selectedAmount >= 50000) selectedBonus = Math.floor(selectedAmount * 0.08);
-    else if (selectedAmount >= 30000) selectedBonus = Math.floor(selectedAmount * 0.067);
-    else if (selectedAmount >= 10000) selectedBonus = Math.floor(selectedAmount * 0.05);
-    else selectedBonus = 0;
-    
     updateSummary();
   });
   
@@ -1061,21 +1045,10 @@ import Header from '../../components/Header.astro';
     const memberTotalDeposit = member?.totalDeposit || 0;
     
     summaryAmount!.textContent = formatPrice(selectedAmount);
-    
-    // 贈送金額
-    if (selectedBonus > 0) {
-      bonusRow!.style.display = 'flex';
-      summaryBonus!.textContent = formatPrice(selectedBonus);
-    } else {
-      bonusRow!.style.display = 'none';
-    }
-    
-    // 實際入帳
-    const total = selectedAmount + selectedBonus;
-    summaryTotal!.textContent = formatPrice(total);
+    summaryTotal!.textContent = formatPrice(selectedAmount);
     
     // 儲值後狀態
-    afterBalance!.textContent = `NT$ ${formatPrice(memberBalance + total)}`;
+    afterBalance!.textContent = `NT$ ${formatPrice(memberBalance + selectedAmount)}`;
     afterTotalDeposit!.textContent = `NT$ ${formatPrice(memberTotalDeposit + selectedAmount)}`;
     
     // 等級變化
@@ -1085,8 +1058,13 @@ import Header from '../../components/Header.astro';
     if (newTierLevel !== currentTierLevel) {
       tierChange!.style.display = 'flex';
       newTier!.textContent = memberTiers[newTierLevel].name;
+      
+      // 顯示新折扣
+      discountInfo!.style.display = 'flex';
+      newDiscount!.textContent = memberTiers[newTierLevel].discountLabel;
     } else {
       tierChange!.style.display = 'none';
+      discountInfo!.style.display = 'none';
     }
     
     // 啟用/禁用按鈕
