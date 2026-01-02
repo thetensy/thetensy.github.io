@@ -144,9 +144,17 @@ export const upsells = {
   }
 };
 
+// 聯絡資訊
+export const contactInfo = {
+  lineId: '@825dsgjy',
+  lineUrl: 'https://lin.ee/JQQdhG6',
+  shopeeUrl: 'https://shopee.tw/changyuanqu',
+  email: 'hello@thetensy.com'
+};
+
 // 急件設定
 export const rushOrder = {
   enabled: true,
   message: '急件費用依實際情況報價，請透過 LINE 與我們聯繫',
-  lineUrl: 'https://line.me/ti/p/@tensy'
+  lineUrl: 'https://lin.ee/JQQdhG6'
 };
