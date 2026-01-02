@@ -1,0 +1,239 @@
+---
+// 方案選擇組件
+// 這裡決定價格、交期、修改次數
+
+interface Plan {
+  name: string;
+  price: number;
+  deliveryDays: number;
+  revisions: number;
+  formats: string[];
+  description: string;
+  recommended?: boolean;
+}
+
+interface Props {
+  plans: Record<string, Plan>;
+  selectedPlan?: string;
+  productName: string;
+}
+
+const { plans, selectedPlan = 'basic', productName } = Astro.props;
+---
+
+<div class="plan-selector">
+  <h3 class="plan-title">
+    <span class="plan-icon">📦</span>
+    選擇方案
+  </h3>
+  
+  <div class="plan-options">
+    {Object.entries(plans).map(([key, plan]) => (
+      <label class:list={['plan-option', { selected: key === selectedPlan, recommended: plan.recommended }]}>
+        <input 
+          type="radio" 
+          name="plan" 
+          value={key}
+          checked={key === selectedPlan}
+          data-price={plan.price}
+          data-days={plan.deliveryDays}
+          data-revisions={plan.revisions}
+          data-formats={plan.formats.join(', ')}
+        />
+        
+        {plan.recommended && <span class="recommended-badge">推薦</span>}
+        
+        <div class="plan-header">
+          <span class="plan-name">{plan.name}</span>
+          <span class="plan-price">
+            <span class="currency">NT$</span>
+            <span class="amount">{plan.price.toLocaleString()}</span>
+          </span>
+        </div>
+        
+        <div class="plan-details">
+          <div class="plan-detail">
+            <span class="detail-icon">📅</span>
+            <span>{plan.deliveryDays} 個工作天</span>
+          </div>
+          <div class="plan-detail">
+            <span class="detail-icon">🔄</span>
+            <span>{plan.revisions} 次免費修改</span>
+          </div>
+          <div class="plan-detail">
+            <span class="detail-icon">📁</span>
+            <span>{plan.formats.join(' + ')}</span>
+          </div>
+        </div>
+        
+        <p class="plan-desc">{plan.description}</p>
+        
+        <div class="plan-check">
+          <span class="check-circle"></span>
+        </div>
+      </label>
+    ))}
+  </div>
+</div>
+
+<style>
+  .plan-selector {
+    margin-bottom: var(--space-6);
+  }
+  
+  .plan-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-4);
+  }
+  
+  .plan-icon {
+    font-size: 18px;
+  }
+  
+  .plan-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+  }
+  
+  .plan-option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-5);
+    background: var(--white);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .plan-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .plan-option:hover {
+    border-color: var(--gray-300);
+  }
+  
+  .plan-option.selected {
+    border-color: var(--primary);
+    background: rgba(46, 59, 107, 0.02);
+  }
+  
+  .plan-option.recommended {
+    border-color: var(--teal);
+  }
+  
+  .plan-option.recommended.selected {
+    border-color: var(--teal);
+    background: rgba(0, 180, 160, 0.02);
+  }
+  
+  .recommended-badge {
+    position: absolute;
+    top: -10px;
+    left: var(--space-4);
+    background: var(--teal);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+  }
+  
+  .plan-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+  }
+  
+  .plan-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-800);
+  }
+  
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+  
+  .plan-price .currency {
+    font-size: 14px;
+    color: var(--gray-500);
+  }
+  
+  .plan-price .amount {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--primary);
+  }
+  
+  .plan-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+  
+  .plan-detail {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    color: var(--gray-600);
+  }
+  
+  .detail-icon {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .plan-desc {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-top: auto;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--gray-100);
+  }
+  
+  .plan-check {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+  }
+  
+  .check-circle {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--gray-300);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+  
+  .plan-option.selected .check-circle {
+    border-color: var(--primary);
+    background: var(--primary);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: 14px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .plan-option.recommended.selected .check-circle {
+    border-color: var(--teal);
+    background: var(--teal);
+  }
+</style>

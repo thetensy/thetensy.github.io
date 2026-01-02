@@ -1,0 +1,556 @@
+---
+// 下單頁面
+// 一頁搞定：選風格 → 選方案 → 填資料 → 加入購物車
+
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import StyleCard from '../components/StyleCard.astro';
+import PlanSelector from '../components/PlanSelector.astro';
+import CartPanel from '../components/CartPanel.astro';
+
+import { products, industries, colorOptions } from '../data/products';
+import { logoStyles, styleCategories } from '../data/styles';
+
+const logoProduct = products.logo;
+---
+
+<Layout title="線上下單">
+  <Header />
+  
+  <main class="main container">
+    <div class="order-content">
+      <!-- 產品類型選擇 -->
+      <section class="product-tabs card">
+        {Object.entries(products).map(([key, product]) => (
+          <button 
+            class:list={['product-tab', { active: key === 'logo', disabled: !product.available }]}
+            data-product={key}
+            disabled={!product.available}
+          >
+            <span class="tab-emoji">{product.emoji}</span>
+            <span class="tab-name">{product.name}</span>
+            {product.comingSoon && <span class="coming-soon">即將推出</span>}
+          </button>
+        ))}
+      </section>
+      
+      <!-- Step 1: 選擇風格 -->
+      <section class="style-section card">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="step-number">1</span>
+            選擇設計風格
+          </h2>
+          <span class="style-count">共 {logoStyles.length} 種風格參考</span>
+        </div>
+        
+        <p class="section-desc">
+          這些是風格參考，設計師會根據您選擇的方向進行原創設計
+        </p>
+        
+        <!-- 風格分類篩選 -->
+        <div class="style-filters">
+          <button class="filter-tag active" data-category="all">
+            全部
+          </button>
+          {Object.entries(styleCategories).map(([key, cat]) => (
+            <button class="filter-tag" data-category={key}>
+              <span class="tag-emoji">{cat.emoji}</span>
+              {cat.label}
+            </button>
+          ))}
+        </div>
+        
+        <!-- 風格網格 -->
+        <div class="style-grid" id="styleGrid">
+          {logoStyles.map((style, index) => (
+            <StyleCard 
+              id={style.id}
+              name={style.name}
+              categoryLabel={style.categoryLabel}
+              description={style.description}
+              reference={style.reference}
+              emoji={style.emoji}
+              selected={index === 0}
+            />
+          ))}
+        </div>
+      </section>
+      
+      <!-- Step 2: 選擇方案 -->
+      <section class="plan-section card">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="step-number">2</span>
+            選擇方案
+          </h2>
+        </div>
+        
+        <PlanSelector 
+          plans={logoProduct.plans} 
+          selectedPlan="basic"
+          productName={logoProduct.name}
+        />
+      </section>
+      
+      <!-- Step 3: 填寫資料 -->
+      <section class="form-section card">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="step-number">3</span>
+            填寫設計資料
+          </h2>
+        </div>
+        
+        <form class="order-form" id="orderForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">
+                品牌名稱
+                <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-input" 
+                id="brandName" 
+                name="brandName"
+                placeholder="例如：阿明小吃店"
+                required
+              />
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                產業類型
+                <span class="required">*</span>
+              </label>
+              <select class="form-select" id="industry" name="industry" required>
+                <option value="">請選擇產業</option>
+                {industries.map(ind => (
+                  <option value={ind.value}>{ind.emoji} {ind.label}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div class="form-group full-width">
+              <label class="form-label">主色偏好</label>
+              <div class="color-picker">
+                {colorOptions.map((color, index) => (
+                  <button 
+                    type="button"
+                    class:list={['color-option', { selected: index === 0 }]}
+                    style={color.isGradient ? `background: ${color.hex}` : `background: ${color.hex}`}
+                    data-color={color.id}
+                    title={color.label}
+                  >
+                    <span class="sr-only">{color.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            <div class="form-group full-width">
+              <label class="form-label">備註說明（選填）</label>
+              <textarea 
+                class="form-textarea" 
+                id="notes" 
+                name="notes"
+                placeholder="任何想告訴設計師的話，例如：希望有手寫感、要放英文副標題 Ah Ming's Kitchen..."
+              ></textarea>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+    
+    <!-- 右側購物車 -->
+    <CartPanel />
+  </main>
+  
+  <!-- Floating LINE Button (Mobile) -->
+  <a href="https://line.me/ti/p/@tensy" target="_blank" class="float-line">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.193 0-.378-.104-.481-.281l-2.432-3.308v2.962c0 .349-.282.63-.63.63-.345 0-.627-.281-.627-.63V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.478.281l2.439 3.308V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-5.741 0c0 .349-.282.63-.631.63-.345 0-.627-.281-.627-.63V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.63H4.917c-.345 0-.63-.281-.63-.63V8.108c0-.345.285-.63.63-.63.349 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+    </svg>
+  </a>
+</Layout>
+
+<style>
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--space-8);
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-12);
+  }
+  
+  @media (max-width: 1024px) {
+    .main {
+      grid-template-columns: 1fr;
+      padding-bottom: 160px; /* 給底部購物車留空間 */
+    }
+  }
+  
+  .order-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  
+  .card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow);
+  }
+  
+  /* Product Tabs */
+  .product-tabs {
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .product-tab {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-500);
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+  
+  .product-tab:not(:disabled):hover {
+    background: var(--gray-100);
+    color: var(--gray-700);
+  }
+  
+  .product-tab.active {
+    background: var(--primary);
+    color: white;
+  }
+  
+  .product-tab:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .tab-emoji {
+    font-size: 18px;
+  }
+  
+  .coming-soon {
+    font-size: 10px;
+    padding: 2px 6px;
+    background: var(--gray-200);
+    border-radius: var(--radius-full);
+    color: var(--gray-500);
+  }
+  
+  /* Section Header */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+  }
+  
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-800);
+  }
+  
+  .step-number {
+    width: 28px;
+    height: 28px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  
+  .style-count {
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+  
+  .section-desc {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-bottom: var(--space-5);
+    padding-left: calc(28px + var(--space-3));
+  }
+  
+  /* Style Filters */
+  .style-filters {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-5);
+  }
+  
+  .filter-tag {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-4);
+    background: var(--gray-100);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .filter-tag:hover {
+    background: var(--gray-200);
+  }
+  
+  .filter-tag.active {
+    background: var(--teal);
+    color: white;
+  }
+  
+  .tag-emoji {
+    font-size: 14px;
+  }
+  
+  /* Style Grid */
+  .style-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-4);
+  }
+  
+  @media (min-width: 768px) {
+    .style-grid {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+  }
+  
+  /* Plan Section */
+  .plan-section {
+    /* PlanSelector 組件自帶樣式 */
+  }
+  
+  /* Form Section */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+  
+  @media (max-width: 640px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  /* Color Picker */
+  .color-picker {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  
+  .color-option {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .color-option:hover {
+    transform: scale(1.1);
+  }
+  
+  .color-option.selected {
+    border-color: var(--gray-800);
+    box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--gray-800);
+  }
+  
+  /* Float LINE Button */
+  .float-line {
+    display: none;
+    position: fixed;
+    bottom: 180px;
+    right: var(--space-4);
+    width: 56px;
+    height: 56px;
+    background: var(--line-green);
+    color: white;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    z-index: 80;
+    transition: transform 0.2s ease;
+  }
+  
+  .float-line:hover {
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 1024px) {
+    .float-line {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  // ===== 互動邏輯 =====
+  
+  // 風格選擇
+  const styleCards = document.querySelectorAll('.style-card');
+  styleCards.forEach(card => {
+    card.addEventListener('click', function() {
+      styleCards.forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      
+      const styleName = this.dataset.styleName;
+      const styleCategory = this.dataset.styleCategory;
+      
+      // 更新購物車顯示
+      const styleNameEl = document.getElementById('currentStyleName');
+      if (styleNameEl) {
+        styleNameEl.textContent = `${styleName} · ${styleCategory}`;
+      }
+    });
+  });
+  
+  // 風格篩選
+  const filterTags = document.querySelectorAll('.filter-tag');
+  filterTags.forEach(tag => {
+    tag.addEventListener('click', function() {
+      filterTags.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      const category = this.dataset.category;
+      
+      styleCards.forEach(card => {
+        const cardCategory = card.dataset.styleCategory;
+        if (category === 'all') {
+          (card as HTMLElement).style.display = '';
+        } else {
+          // 簡單的分類對應（實際應該用更好的方式）
+          const categoryMap: Record<string, string> = {
+            'food': '餐飲美食',
+            'elegant': '優雅質感',
+            'tech': '科技現代',
+            'retro': '復古懷舊',
+            'minimal': '極簡風格',
+            'natural': '自然有機',
+            'playful': '活潑可愛'
+          };
+          const show = cardCategory === categoryMap[category];
+          (card as HTMLElement).style.display = show ? '' : 'none';
+        }
+      });
+    });
+  });
+  
+  // 方案選擇
+  const planInputs = document.querySelectorAll('input[name="plan"]');
+  planInputs.forEach(input => {
+    input.addEventListener('change', function(this: HTMLInputElement) {
+      const label = this.closest('.plan-option');
+      document.querySelectorAll('.plan-option').forEach(opt => opt.classList.remove('selected'));
+      label?.classList.add('selected');
+      
+      // 更新購物車
+      const price = this.dataset.price;
+      const days = this.dataset.days;
+      const revisions = this.dataset.revisions;
+      const formats = this.dataset.formats;
+      const planName = this.value === 'basic' ? '基礎版' : '專業版';
+      
+      updateCart({
+        plan: planName,
+        price: Number(price),
+        days: Number(days),
+        revisions: Number(revisions),
+        formats: formats || ''
+      });
+    });
+  });
+  
+  // 顏色選擇
+  const colorOptions = document.querySelectorAll('.color-option');
+  colorOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      colorOptions.forEach(o => o.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+  
+  // 更新購物車函數
+  function updateCart(data: { plan: string; price: number; days: number; revisions: number; formats: string }) {
+    const planEl = document.getElementById('currentPlan');
+    const priceEl = document.getElementById('currentPrice');
+    const daysEl = document.getElementById('currentDays');
+    const revisionsEl = document.getElementById('currentRevisions');
+    const formatsEl = document.getElementById('currentFormats');
+    const totalEl = document.getElementById('totalAmount');
+    
+    if (planEl) planEl.textContent = data.plan;
+    if (priceEl) priceEl.textContent = `NT$ ${data.price.toLocaleString()}`;
+    if (daysEl) daysEl.textContent = `${data.days} 個工作天`;
+    if (revisionsEl) revisionsEl.textContent = `${data.revisions} 次`;
+    if (formatsEl) formatsEl.textContent = data.formats;
+    if (totalEl) totalEl.textContent = data.price.toLocaleString();
+  }
+  
+  // 加入購物車
+  const addToCartBtn = document.getElementById('addToCartBtn');
+  addToCartBtn?.addEventListener('click', () => {
+    const brandName = (document.getElementById('brandName') as HTMLInputElement)?.value;
+    const industry = (document.getElementById('industry') as HTMLSelectElement)?.value;
+    
+    if (!brandName) {
+      alert('請填寫品牌名稱！');
+      document.getElementById('brandName')?.focus();
+      return;
+    }
+    
+    if (!industry) {
+      alert('請選擇產業類型！');
+      document.getElementById('industry')?.focus();
+      return;
+    }
+    
+    // TODO: 實作購物車邏輯
+    alert('✅ 已加入購物車！\n\n（購物車功能開發中，目前請透過 LINE 完成訂購）');
+  });
+  
+  // 下載報價單
+  const downloadBtn = document.getElementById('downloadQuoteBtn');
+  downloadBtn?.addEventListener('click', () => {
+    alert('📄 報價單下載功能開發中！\n\n內容將包含：\n- 選擇的風格與方案\n- 品牌名稱與需求\n- 價格與交期');
+  });
+</script>
