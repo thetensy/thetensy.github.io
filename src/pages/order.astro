@@ -90,6 +90,7 @@ const logoProduct = products.logo;
           plans={logoProduct.plans} 
           selectedPlan="basic"
           productName={logoProduct.name}
+          serviceNote={logoProduct.serviceNote}
         />
       </section>
       
@@ -134,18 +135,37 @@ const logoProduct = products.logo;
             
             <div class="form-group full-width">
               <label class="form-label">主色偏好</label>
-              <div class="color-picker">
-                {colorOptions.map((color, index) => (
-                  <button 
-                    type="button"
-                    class:list={['color-option', { selected: index === 0 }]}
-                    style={color.isGradient ? `background: ${color.hex}` : `background: ${color.hex}`}
-                    data-color={color.id}
-                    title={color.label}
-                  >
-                    <span class="sr-only">{color.label}</span>
-                  </button>
-                ))}
+              <div class="color-section">
+                <div class="color-picker">
+                  {colorOptions.map((color, index) => (
+                    <button 
+                      type="button"
+                      class:list={['color-option', { selected: index === 0 }]}
+                      style={color.isGradient ? `background: ${color.hex}` : `background: ${color.hex}`}
+                      data-color={color.id}
+                      title={color.label}
+                    >
+                      <span class="sr-only">{color.label}</span>
+                    </button>
+                  ))}
+                </div>
+                <div class="color-custom">
+                  <label class="custom-color-label">
+                    <span>或自訂色碼：</span>
+                    <div class="custom-color-input">
+                      <span class="hex-prefix">#</span>
+                      <input 
+                        type="text" 
+                        id="customColor"
+                        class="hex-input"
+                        placeholder="FF5733"
+                        maxlength="6"
+                        pattern="[0-9A-Fa-f]{6}"
+                      />
+                      <div class="color-preview" id="colorPreview"></div>
+                    </div>
+                  </label>
+                </div>
               </div>
             </div>
             
@@ -218,7 +238,7 @@ const logoProduct = products.logo;
     }
   }
   
-  /* Product Tabs */
+  /* Product Tabs - 可滾動 */
   .product-tabs {
     display: flex;
     gap: var(--space-2);
@@ -226,6 +246,7 @@ const logoProduct = products.logo;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    scroll-snap-type: x mandatory;
   }
   
   .product-tabs::-webkit-scrollbar {
@@ -246,16 +267,18 @@ const logoProduct = products.logo;
     white-space: nowrap;
     transition: all 0.2s ease;
     flex-shrink: 0;
+    scroll-snap-align: start;
   }
   
   @media (max-width: 640px) {
-    .product-tab {
+    .product-tabs {
+      margin: 0 calc(-1 * var(--space-4));
       padding: var(--space-2) var(--space-4);
-      font-size: 13px;
     }
     
-    .product-tab .tab-name {
-      display: none;
+    .product-tab {
+      padding: var(--space-2) var(--space-3);
+      font-size: 13px;
     }
   }
   
@@ -408,6 +431,12 @@ const logoProduct = products.logo;
   }
   
   /* Color Picker */
+  .color-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  
   .color-picker {
     display: flex;
     gap: var(--space-3);
@@ -431,6 +460,62 @@ const logoProduct = products.logo;
   .color-option.selected {
     border-color: var(--gray-800);
     box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--gray-800);
+  }
+  
+  .color-custom {
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--gray-100);
+  }
+  
+  .custom-color-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 14px;
+    color: var(--gray-600);
+  }
+  
+  .custom-color-input {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: var(--space-2) var(--space-3);
+  }
+  
+  .hex-prefix {
+    color: var(--gray-400);
+    font-family: monospace;
+    font-weight: 600;
+  }
+  
+  .hex-input {
+    width: 80px;
+    border: none;
+    background: transparent;
+    font-family: monospace;
+    font-size: 14px;
+    color: var(--gray-800);
+    text-transform: uppercase;
+  }
+  
+  .hex-input:focus {
+    outline: none;
+  }
+  
+  .hex-input::placeholder {
+    color: var(--gray-300);
+  }
+  
+  .color-preview {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    border: 1px solid var(--gray-300);
+    transition: background 0.2s;
   }
   
   /* Float LINE Button */
@@ -527,7 +612,14 @@ const logoProduct = products.logo;
       const days = this.dataset.days;
       const revisions = this.dataset.revisions;
       const formats = this.dataset.formats;
-      const planName = this.value === 'basic' ? '基礎版' : '專業版';
+      
+      // 方案名稱對應
+      const planNames: Record<string, string> = {
+        'basic': '基礎版',
+        'pro': '專業版',
+        'premium': '進階版'
+      };
+      const planName = planNames[this.value] || this.value;
       
       updateCart({
         plan: planName,
@@ -541,11 +633,33 @@ const logoProduct = products.logo;
   
   // 顏色選擇
   const colorOptions = document.querySelectorAll('.color-option');
+  const customColorInput = document.getElementById('customColor') as HTMLInputElement;
+  const colorPreview = document.getElementById('colorPreview');
+  
   colorOptions.forEach(option => {
     option.addEventListener('click', function() {
       colorOptions.forEach(o => o.classList.remove('selected'));
       this.classList.add('selected');
+      // 清除自訂顏色
+      if (customColorInput) customColorInput.value = '';
+      if (colorPreview) colorPreview.style.background = 'var(--gray-200)';
     });
+  });
+  
+  // 自訂顏色輸入
+  customColorInput?.addEventListener('input', function() {
+    const value = this.value.replace(/[^0-9A-Fa-f]/g, '').toUpperCase();
+    this.value = value;
+    
+    if (value.length === 6) {
+      // 有效的 HEX 色碼
+      const color = `#${value}`;
+      if (colorPreview) colorPreview.style.background = color;
+      // 取消預設顏色選擇
+      colorOptions.forEach(o => o.classList.remove('selected'));
+    } else if (value.length === 0) {
+      if (colorPreview) colorPreview.style.background = 'var(--gray-200)';
+    }
   });
   
   // 更新購物車函數

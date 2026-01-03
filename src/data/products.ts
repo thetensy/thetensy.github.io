@@ -8,6 +8,8 @@ export const products = {
     emoji: '🎨',
     description: '專屬品牌識別，讓顧客一眼記住你',
     available: true,
+    // 服務說明
+    serviceNote: '初稿提供 4 種設計方案，選定後進行細化完稿',
     plans: {
       basic: {
         name: '基礎版',
@@ -15,7 +17,8 @@ export const products = {
         deliveryDays: 3,
         revisions: 1,
         formats: ['PNG'],
-        description: '適合剛起步的小店'
+        description: '適合剛起步的小店',
+        features: ['初稿 4 款樣式', '選 1 款細化完稿']
       },
       pro: {
         name: '專業版',
@@ -24,7 +27,17 @@ export const products = {
         revisions: 3,
         formats: ['PNG', 'AI 向量檔'],
         description: '可用於印刷、招牌製作',
-        recommended: true
+        recommended: true,
+        features: ['初稿 4 款樣式', '選 1 款細化完稿']
+      },
+      premium: {
+        name: '進階版',
+        price: 2680,
+        deliveryDays: 2,
+        revisions: 10,
+        formats: ['PNG', 'AI 向量檔', 'SVG'],
+        description: '完整品牌應用，適合正式創業',
+        features: ['初稿 4 款樣式', '選 1 款細化完稿', '品牌色彩規範']
       }
     }
   },

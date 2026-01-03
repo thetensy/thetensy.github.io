@@ -10,15 +10,17 @@ interface Plan {
   formats: string[];
   description: string;
   recommended?: boolean;
+  features?: string[];
 }
 
 interface Props {
   plans: Record<string, Plan>;
   selectedPlan?: string;
   productName: string;
+  serviceNote?: string;
 }
 
-const { plans, selectedPlan = 'basic', productName } = Astro.props;
+const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
 ---
 
 <div class="plan-selector">
@@ -26,6 +28,13 @@ const { plans, selectedPlan = 'basic', productName } = Astro.props;
     <span class="plan-icon">📦</span>
     選擇方案
   </h3>
+  
+  {serviceNote && (
+    <p class="service-note">
+      <span class="note-icon">💡</span>
+      {serviceNote}
+    </p>
+  )}
   
   <div class="plan-options">
     {Object.entries(plans).map(([key, plan]) => (
@@ -66,6 +75,14 @@ const { plans, selectedPlan = 'basic', productName } = Astro.props;
           </div>
         </div>
         
+        {plan.features && (
+          <div class="plan-features">
+            {plan.features.map(feature => (
+              <span class="feature-tag">✓ {feature}</span>
+            ))}
+          </div>
+        )}
+        
         <p class="plan-desc">{plan.description}</p>
         
         <div class="plan-check">
@@ -88,16 +105,32 @@ const { plans, selectedPlan = 'basic', productName } = Astro.props;
     font-size: 16px;
     font-weight: 700;
     color: var(--gray-800);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
   }
   
   .plan-icon {
     font-size: 18px;
   }
   
+  .service-note {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 14px;
+    color: var(--teal);
+    background: rgba(0, 180, 160, 0.08);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius);
+    margin-bottom: var(--space-4);
+  }
+  
+  .note-icon {
+    font-size: 16px;
+  }
+  
   .plan-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--space-4);
   }
   
@@ -121,11 +154,14 @@ const { plans, selectedPlan = 'basic', productName } = Astro.props;
   
   .plan-option:hover {
     border-color: var(--gray-300);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
   }
   
   .plan-option.selected {
     border-color: var(--primary);
-    background: rgba(46, 59, 107, 0.02);
+    background: rgba(46, 59, 107, 0.03);
+    box-shadow: 0 0 0 3px rgba(46, 59, 107, 0.1);
   }
   
   .plan-option.recommended {
@@ -134,7 +170,8 @@ const { plans, selectedPlan = 'basic', productName } = Astro.props;
   
   .plan-option.recommended.selected {
     border-color: var(--teal);
-    background: rgba(0, 180, 160, 0.02);
+    background: rgba(0, 180, 160, 0.03);
+    box-shadow: 0 0 0 3px rgba(0, 180, 160, 0.15);
   }
   
   .recommended-badge {
@@ -198,6 +235,21 @@ const { plans, selectedPlan = 'basic', productName } = Astro.props;
     font-size: 14px;
     width: 20px;
     text-align: center;
+  }
+  
+  .plan-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+  
+  .feature-tag {
+    font-size: 11px;
+    color: var(--teal);
+    background: rgba(0, 180, 160, 0.1);
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
   }
   
   .plan-desc {

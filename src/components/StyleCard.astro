@@ -24,7 +24,7 @@ const { id, name, categoryLabel, description, reference, emoji, selected = false
 >
   <div class="style-preview">
     <span class="style-emoji">{emoji}</span>
-    {selected && <span class="selected-badge">✓</span>}
+    <span class="selected-badge">✓</span>
   </div>
   
   <div class="style-info">
@@ -71,6 +71,7 @@ const { id, name, categoryLabel, description, reference, emoji, selected = false
     /* 之後換成真實作品圖會用 <img> 替換 */
   }
   
+  /* 打勾預設隱藏，選中時才顯示 */
   .selected-badge {
     position: absolute;
     top: var(--space-2);
@@ -80,11 +81,15 @@ const { id, name, categoryLabel, description, reference, emoji, selected = false
     background: var(--teal);
     color: white;
     border-radius: 50%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     font-size: 12px;
     font-weight: 700;
+  }
+  
+  .style-card.selected .selected-badge {
+    display: flex;
   }
   
   .style-info {
