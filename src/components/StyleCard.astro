@@ -9,10 +9,11 @@ interface Props {
   description: string;
   reference?: string;
   emoji: string;
+  image: string;
   selected?: boolean;
 }
 
-const { id, name, categoryLabel, description, reference, emoji, selected = false } = Astro.props;
+const { id, name, categoryLabel, description, reference, emoji, image, selected = false } = Astro.props;
 ---
 
 <button 
@@ -23,12 +24,15 @@ const { id, name, categoryLabel, description, reference, emoji, selected = false
   type="button"
 >
   <div class="style-preview">
-    <span class="style-emoji">{emoji}</span>
+    <img src={image} alt={name} class="style-image" loading="lazy" />
     <span class="selected-badge">✓</span>
   </div>
   
   <div class="style-info">
-    <h3 class="style-name">{name}</h3>
+    <h3 class="style-name">
+      <span class="style-emoji">{emoji}</span>
+      {name}
+    </h3>
     <span class="style-category">{categoryLabel}</span>
   </div>
 </button>
@@ -64,11 +68,13 @@ const { id, name, categoryLabel, description, reference, emoji, selected = false
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
   
-  .style-emoji {
-    font-size: 48px;
-    /* 之後換成真實作品圖會用 <img> 替換 */
+  .style-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   /* 打勾預設隱藏，選中時才顯示 */
@@ -97,10 +103,18 @@ const { id, name, categoryLabel, description, reference, emoji, selected = false
   }
   
   .style-name {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--gray-800);
     margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .style-emoji {
+    font-size: 16px;
+    flex-shrink: 0;
   }
   
   .style-category {

@@ -18,7 +18,8 @@ export interface DesignStyle {
   categoryLabel: string;  // 分類顯示名稱
   description: string;    // 風格描述
   reference?: string;     // 參考作品名稱（選填）
-  emoji: string;          // 代表 emoji（之後換成真實作品圖）
+  emoji: string;          // 代表 emoji
+  image: string;          // 參考圖片路徑
   tags: string[];         // 搜尋用標籤
   forProducts: string[];  // 適用的產品類型
 }
@@ -43,6 +44,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '餐飲美食',
     description: '傳統元素結合現代設計，適合中式餐廳、小吃店、茶館',
     emoji: '🍜',
+    image: '/portfolio/logo-laochang-beef-noodle.webp',
     tags: ['中式', '餐飲', '傳統', '食品'],
     forProducts: ['logo', 'menu', 'namecard']
   },
@@ -53,6 +55,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '餐飲美食',
     description: '溫馨舒適的咖啡廳風格，適合咖啡店、甜點店、烘焙坊',
     emoji: '☕',
+    image: '/portfolio/logo-tensy-brew.webp',
     tags: ['咖啡', '甜點', '烘焙', '溫馨'],
     forProducts: ['logo', 'menu', 'namecard']
   },
@@ -63,6 +66,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '餐飲美食',
     description: '簡潔優雅的日式風格，適合日本料理、拉麵店、居酒屋',
     emoji: '🍣',
+    image: '/portfolio/logo-kawashi-sushi.webp',
     tags: ['日式', '和風', '料理', '簡潔'],
     forProducts: ['logo', 'menu', 'namecard']
   },
@@ -75,6 +79,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '優雅質感',
     description: '高端大氣的精品風格，適合時尚品牌、珠寶飾品、高級服務',
     emoji: '💎',
+    image: '/portfolio/logo-lumiere-jewelry.webp',
     tags: ['奢華', '精品', '高端', '時尚'],
     forProducts: ['logo', 'namecard']
   },
@@ -85,6 +90,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '優雅質感',
     description: '溫柔優雅的女性風格，適合美容美甲、花藝、女性用品',
     emoji: '🌸',
+    image: '/portfolio/logo-hanami-nail.webp',
     tags: ['女性', '柔美', '優雅', '花卉'],
     forProducts: ['logo', 'namecard', 'social']
   },
@@ -94,7 +100,8 @@ export const logoStyles: DesignStyle[] = [
     category: 'elegant',
     categoryLabel: '優雅質感',
     description: '手作質感的職人風格，適合工作室、手工藝品、設計師品牌',
-    emoji: '🛠️',
+    emoji: '🔨',
+    image: '/portfolio/logo-mokukou-studio.webp',
     tags: ['職人', '手作', '工藝', '匠心'],
     forProducts: ['logo', 'namecard']
   },
@@ -107,6 +114,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '極簡現代',
     description: '俐落科技感設計，適合科技公司、App、新創企業',
     emoji: '🚀',
+    image: '/portfolio/logo-nexo-tech.webp',
     tags: ['科技', '現代', '簡約', '俐落'],
     forProducts: ['logo', 'namecard', 'website']
   },
@@ -116,7 +124,8 @@ export const logoStyles: DesignStyle[] = [
     category: 'minimal',
     categoryLabel: '極簡現代',
     description: '乾淨俐落的設計風格，適合任何追求簡潔形象的品牌',
-    emoji: '⬜',
+    emoji: '✨',
+    image: '/portfolio/logo-jing-select.webp',
     tags: ['極簡', '乾淨', '現代', '簡潔'],
     forProducts: ['logo', 'namecard', 'website']
   },
@@ -127,6 +136,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '極簡現代',
     description: '幾何圖形構成的現代設計，適合建築、設計、創意產業',
     emoji: '🔷',
+    image: '/portfolio/logo-fangyuan-office.webp',
     tags: ['幾何', '現代', '結構', '理性'],
     forProducts: ['logo', 'namecard']
   },
@@ -139,6 +149,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '動漫遊戲',
     description: '霸氣銳利的電競風格，適合遊戲戰隊、電競品牌、遊戲周邊',
     emoji: '🎮',
+    image: '/portfolio/logo-shadow-wolves.webp',
     tags: ['電競', '遊戲', '銳利', '動感'],
     forProducts: ['logo', 'social']
   },
@@ -148,7 +159,8 @@ export const logoStyles: DesignStyle[] = [
     category: 'gaming',
     categoryLabel: '動漫遊戲',
     description: '活潑可愛的動漫風格，適合動漫相關品牌、同人創作',
-    emoji: '🌟',
+    emoji: '⭐',
+    image: '/portfolio/logo-starry-animation.webp',
     tags: ['動漫', '可愛', '日系', '活潑'],
     forProducts: ['logo', 'social']
   },
@@ -159,6 +171,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '動漫遊戲',
     description: '像素風或復古遊戲機風格，適合懷舊遊戲、獨立遊戲',
     emoji: '👾',
+    image: '/portfolio/logo-pixel-arcade.webp',
     tags: ['像素', '復古', '遊戲', '懷舊'],
     forProducts: ['logo', 'social']
   },
@@ -171,6 +184,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: 'VTuber',
     description: '專為虛擬主播設計的 Logo，可愛、酷炫、奇幻風格皆可',
     emoji: '🎭',
+    image: '/portfolio/logo-yaori-vtuber.webp',
     tags: ['VTuber', '虛擬主播', '直播', '頻道'],
     forProducts: ['logo', 'social']
   },
@@ -183,6 +197,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '徽章紋章',
     description: '經典圓形或盾形徽章，適合學校、社團、運動隊伍',
     emoji: '🛡️',
+    image: '/portfolio/logo-blazer-moto.webp',
     tags: ['徽章', '經典', '圓形', '盾形'],
     forProducts: ['logo', 'namecard']
   },
@@ -193,6 +208,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '徽章紋章',
     description: '歐式紋章風格，適合高端品牌、家族企業、精緻產品',
     emoji: '🏅',
+    image: '/portfolio/logo-rex-royal-bake.webp',
     tags: ['紋章', '歐式', '高端', '傳統'],
     forProducts: ['logo', 'namecard']
   },
@@ -202,7 +218,8 @@ export const logoStyles: DesignStyle[] = [
     category: 'badge',
     categoryLabel: '徽章紋章',
     description: '復古印章風格，適合文創品牌、手工製品、認證標誌',
-    emoji: '🔖',
+    emoji: '🔴',
+    image: '/portfolio/logo-chengji-tea.webp',
     tags: ['印章', '復古', '文創', '認證'],
     forProducts: ['logo', 'namecard']
   },
@@ -215,6 +232,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '字體設計',
     description: '手寫感的字體 Logo，適合個人品牌、藝術家、文創',
     emoji: '✒️',
+    image: '/portfolio/logo-hikari-florist.webp',
     tags: ['手寫', '字體', '個人', '藝術'],
     forProducts: ['logo', 'namecard']
   },
@@ -225,6 +243,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '字體設計',
     description: '現代感的純文字 Logo，適合企業、科技公司、專業服務',
     emoji: '🔤',
+    image: '/portfolio/logo-modo-design.webp',
     tags: ['字標', '現代', '企業', '專業'],
     forProducts: ['logo', 'namecard', 'website']
   },
@@ -235,6 +254,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '字體設計',
     description: '具有裝飾性的特殊字體設計，適合需要獨特識別度的品牌',
     emoji: '🎨',
+    image: '/portfolio/logo-magic-dessert.webp',
     tags: ['裝飾', '特殊', '獨特', '創意'],
     forProducts: ['logo', 'namecard']
   },
@@ -245,6 +265,7 @@ export const logoStyles: DesignStyle[] = [
     categoryLabel: '字體設計',
     description: '中文字體設計的 Logo，適合強調在地文化或中文品牌名',
     emoji: '漢',
+    image: '/portfolio/logo-shanhai-bookstore.webp',
     tags: ['中文', '字標', '在地', '文化'],
     forProducts: ['logo', 'namecard']
   }
