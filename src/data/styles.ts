@@ -165,43 +165,13 @@ export const logoStyles: DesignStyle[] = [
   
   // 🎭 VTuber
   {
-    id: 'vtuber-cute',
-    name: 'VTuber 可愛系',
+    id: 'vtuber-logo',
+    name: 'VTuber Logo',
     category: 'vtuber',
     categoryLabel: 'VTuber',
-    description: '可愛風格的 VTuber Logo，適合走可愛路線的虛擬主播',
-    emoji: '🎀',
-    tags: ['VTuber', '可愛', '虛擬主播', '萌'],
-    forProducts: ['logo', 'social']
-  },
-  {
-    id: 'vtuber-cool',
-    name: 'VTuber 酷炫系',
-    category: 'vtuber',
-    categoryLabel: 'VTuber',
-    description: '帥氣酷炫的 VTuber Logo，適合走帥氣或神秘路線的虛擬主播',
-    emoji: '🔥',
-    tags: ['VTuber', '酷炫', '虛擬主播', '帥氣'],
-    forProducts: ['logo', 'social']
-  },
-  {
-    id: 'vtuber-fantasy',
-    name: 'VTuber 奇幻系',
-    category: 'vtuber',
-    categoryLabel: 'VTuber',
-    description: '奇幻魔法風格的 VTuber Logo，適合有世界觀設定的虛擬主播',
-    emoji: '✨',
-    tags: ['VTuber', '奇幻', '虛擬主播', '魔法'],
-    forProducts: ['logo', 'social']
-  },
-  {
-    id: 'vtuber-channel',
-    name: 'VTuber 頻道設計',
-    category: 'vtuber',
-    categoryLabel: 'VTuber',
-    description: '整體頻道品牌設計，包含 Logo、待機畫面風格參考',
-    emoji: '📺',
-    tags: ['VTuber', '頻道', '品牌', '直播'],
+    description: '專為虛擬主播設計的 Logo，可愛、酷炫、奇幻風格皆可',
+    emoji: '🎭',
+    tags: ['VTuber', '虛擬主播', '直播', '頻道'],
     forProducts: ['logo', 'social']
   },
   

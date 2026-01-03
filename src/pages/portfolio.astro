@@ -1,0 +1,431 @@
+---
+// 作品集頁面
+// 瀑布流展示所有設計作品
+
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import { portfolioItems, portfolioCategories, getPortfolioItems } from '../data/portfolio';
+
+const items = getPortfolioItems();
+---
+
+<Layout title="作品集">
+  <Header />
+  
+  <main class="main container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1 class="hero-title">作品集</h1>
+      <p class="hero-desc">每一個作品都是品牌故事的開始</p>
+    </section>
+    
+    <!-- 分類篩選 -->
+    <section class="filter-section">
+      <div class="filter-tabs">
+        {Object.entries(portfolioCategories).map(([key, cat]) => (
+          <button 
+            class:list={['filter-btn', { active: key === 'all' }]}
+            data-category={key}
+          >
+            <span class="filter-emoji">{cat.emoji}</span>
+            <span class="filter-label">{cat.label}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+    
+    <!-- 作品網格 - 瀑布流 -->
+    <section class="portfolio-section">
+      <div class="portfolio-grid" id="portfolioGrid">
+        {items.length > 0 ? (
+          items.map(item => (
+            <article class="portfolio-card" data-category={item.category}>
+              <div class="card-image">
+                <!-- 之後換成真實圖片 -->
+                <div class="image-placeholder">
+                  <span class="placeholder-emoji">
+                    {item.category === 'logo' ? '🎨' : 
+                     item.category === 'namecard' ? '💼' :
+                     item.category === 'menu' ? '🍽️' :
+                     item.category === 'social' ? '📱' : '🌐'}
+                  </span>
+                  <span class="placeholder-text">{item.title}</span>
+                </div>
+                {item.featured && <span class="featured-badge">精選</span>}
+              </div>
+              <div class="card-content">
+                <h3 class="card-title">{item.title}</h3>
+                {item.client && <p class="card-client">{item.client}</p>}
+                <div class="card-tags">
+                  {item.tags.slice(0, 3).map(tag => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))
+        ) : (
+          <div class="empty-state">
+            <span class="empty-emoji">🎨</span>
+            <h3>作品準備中</h3>
+            <p>我們正在整理精彩的設計作品，敬請期待！</p>
+          </div>
+        )}
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-card">
+        <h2>想要擁有專屬設計？</h2>
+        <p>立即開始，讓我們為您的品牌打造獨特識別</p>
+        <div class="cta-buttons">
+          <a href="/order" class="btn btn-primary">開始設計</a>
+          <a href="https://lin.ee/JQQdhG6" target="_blank" class="btn btn-line">
+            LINE 諮詢
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .main {
+    padding-top: calc(var(--header-height) + var(--space-8) + 4px);
+    padding-bottom: var(--space-16);
+  }
+  
+  /* Hero */
+  .hero {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+  
+  .hero-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: var(--space-3);
+  }
+  
+  .hero-desc {
+    font-size: 16px;
+    color: var(--gray-500);
+  }
+  
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 28px;
+    }
+  }
+  
+  /* Filter Section */
+  .filter-section {
+    margin-bottom: var(--space-8);
+  }
+  
+  .filter-tabs {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    background: var(--white);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .filter-btn:hover {
+    border-color: var(--gray-300);
+    background: var(--gray-50);
+  }
+  
+  .filter-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+  }
+  
+  .filter-emoji {
+    font-size: 16px;
+  }
+  
+  @media (max-width: 640px) {
+    .filter-btn {
+      padding: var(--space-2) var(--space-4);
+      font-size: 13px;
+    }
+    
+    .filter-label {
+      display: none;
+    }
+    
+    .filter-btn.active .filter-label {
+      display: inline;
+    }
+  }
+  
+  /* Portfolio Grid - 瀑布流 */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+  
+  @media (min-width: 640px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
+  }
+  
+  /* Portfolio Card */
+  .portfolio-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+  }
+  
+  .portfolio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .card-image {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+  }
+  
+  .placeholder-emoji {
+    font-size: 48px;
+    opacity: 0.5;
+  }
+  
+  .placeholder-text {
+    font-size: 12px;
+    color: var(--gray-400);
+    text-align: center;
+    padding: 0 var(--space-2);
+  }
+  
+  .featured-badge {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+  }
+  
+  .card-content {
+    padding: var(--space-4);
+  }
+  
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .card-client {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-bottom: var(--space-3);
+  }
+  
+  .card-tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  
+  .tag {
+    font-size: 11px;
+    color: var(--teal);
+    background: rgba(0, 180, 160, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+  }
+  
+  /* Empty State */
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--space-16) var(--space-4);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+  }
+  
+  .empty-emoji {
+    font-size: 64px;
+    display: block;
+    margin-bottom: var(--space-4);
+  }
+  
+  .empty-state h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-2);
+  }
+  
+  .empty-state p {
+    font-size: 14px;
+    color: var(--gray-500);
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    margin-top: var(--space-16);
+  }
+  
+  .cta-card {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border-radius: var(--radius-xl);
+    padding: var(--space-12) var(--space-8);
+    text-align: center;
+    color: white;
+  }
+  
+  .cta-card h2 {
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: var(--space-3);
+  }
+  
+  .cta-card p {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: var(--space-6);
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-primary {
+    background: white;
+    color: var(--primary);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .btn-line {
+    background: var(--line-green);
+    color: white;
+  }
+  
+  .btn-line:hover {
+    background: #05B04C;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 640px) {
+    .cta-card {
+      padding: var(--space-8) var(--space-6);
+    }
+    
+    .cta-card h2 {
+      font-size: 22px;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+    }
+    
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // 分類篩選
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.portfolio-card');
+  
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // 更新 active 狀態
+      filterBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      const category = this.dataset.category;
+      
+      // 篩選卡片
+      cards.forEach(card => {
+        const cardCategory = (card as HTMLElement).dataset.category;
+        if (category === 'all' || cardCategory === category) {
+          (card as HTMLElement).style.display = '';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

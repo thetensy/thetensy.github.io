@@ -230,7 +230,12 @@ const logoProduct = products.logo;
     border-radius: var(--radius-lg);
     padding: var(--space-6);
     box-shadow: var(--shadow);
-    overflow: hidden; /* 防止內容超出 */
+  }
+  
+  /* product-tabs 不需要 overflow hidden，要能滾動 */
+  .product-tabs.card {
+    overflow-x: auto;
+    overflow-y: hidden;
   }
   
   @media (max-width: 640px) {
