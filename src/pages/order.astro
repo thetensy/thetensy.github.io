@@ -213,8 +213,8 @@ const logoProduct = products.logo;
   
   @media (max-width: 640px) {
     .main {
-      padding-left: var(--space-4);
-      padding-right: var(--space-4);
+      gap: var(--space-4);
+      padding-top: calc(var(--header-height) + var(--space-4) + 4px);
     }
   }
   
@@ -395,16 +395,29 @@ const logoProduct = products.logo;
     font-size: 14px;
   }
   
-  /* Style Grid */
+  /* Style Grid - 修正手機版大小 */
   .style-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--space-3);
+  }
+  
+  @media (min-width: 480px) {
+    .style-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: var(--space-4);
+    }
   }
   
   @media (min-width: 768px) {
     .style-grid {
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .style-grid {
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
     }
   }
   

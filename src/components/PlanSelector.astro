@@ -84,10 +84,6 @@ const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
         )}
         
         <p class="plan-desc">{plan.description}</p>
-        
-        <div class="plan-check">
-          <span class="check-circle"></span>
-        </div>
       </label>
     ))}
   </div>
@@ -130,7 +126,7 @@ const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
   
   .plan-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: var(--space-4);
   }
   
@@ -143,7 +139,7 @@ const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
     border: 2px solid var(--gray-200);
     border-radius: var(--radius-lg);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
   }
   
   .plan-option input {
@@ -158,10 +154,15 @@ const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
     box-shadow: var(--shadow);
   }
   
+  /* 選中時的可愛外光暈特效 */
   .plan-option.selected {
     border-color: var(--primary);
-    background: rgba(46, 59, 107, 0.03);
-    box-shadow: 0 0 0 3px rgba(46, 59, 107, 0.1);
+    background: rgba(46, 59, 107, 0.02);
+    box-shadow: 
+      0 0 0 3px rgba(46, 59, 107, 0.15),
+      0 0 20px rgba(46, 59, 107, 0.1),
+      0 4px 12px rgba(46, 59, 107, 0.15);
+    transform: translateY(-2px);
   }
   
   .plan-option.recommended {
@@ -170,8 +171,11 @@ const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
   
   .plan-option.recommended.selected {
     border-color: var(--teal);
-    background: rgba(0, 180, 160, 0.03);
-    box-shadow: 0 0 0 3px rgba(0, 180, 160, 0.15);
+    background: rgba(0, 180, 160, 0.02);
+    box-shadow: 
+      0 0 0 3px rgba(0, 180, 160, 0.2),
+      0 0 20px rgba(0, 180, 160, 0.15),
+      0 4px 12px rgba(0, 180, 160, 0.2);
   }
   
   .recommended-badge {
@@ -191,12 +195,14 @@ const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
     align-items: baseline;
     justify-content: space-between;
     margin-bottom: var(--space-4);
+    gap: var(--space-2);
   }
   
   .plan-name {
     font-size: 18px;
     font-weight: 700;
     color: var(--gray-800);
+    flex-shrink: 0;
   }
   
   .plan-price {
@@ -206,12 +212,12 @@ const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
   }
   
   .plan-price .currency {
-    font-size: 14px;
+    font-size: 12px;
     color: var(--gray-500);
   }
   
   .plan-price .amount {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 900;
     color: var(--primary);
   }
@@ -258,34 +264,5 @@ const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
     margin-top: auto;
     padding-top: var(--space-3);
     border-top: 1px solid var(--gray-100);
-  }
-  
-  .plan-check {
-    position: absolute;
-    top: var(--space-4);
-    right: var(--space-4);
-  }
-  
-  .check-circle {
-    display: block;
-    width: 22px;
-    height: 22px;
-    border: 2px solid var(--gray-300);
-    border-radius: 50%;
-    transition: all 0.2s ease;
-  }
-  
-  .plan-option.selected .check-circle {
-    border-color: var(--primary);
-    background: var(--primary);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
-    background-size: 14px;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  
-  .plan-option.recommended.selected .check-circle {
-    border-color: var(--teal);
-    background: var(--teal);
   }
 </style>
