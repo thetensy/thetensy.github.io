@@ -41,16 +41,7 @@ const items = getPortfolioItems();
           items.map(item => (
             <article class="portfolio-card" data-category={item.category}>
               <div class="card-image">
-                <!-- 之後換成真實圖片 -->
-                <div class="image-placeholder">
-                  <span class="placeholder-emoji">
-                    {item.category === 'logo' ? '🎨' : 
-                     item.category === 'namecard' ? '💼' :
-                     item.category === 'menu' ? '🍽️' :
-                     item.category === 'social' ? '📱' : '🌐'}
-                  </span>
-                  <span class="placeholder-text">{item.title}</span>
-                </div>
+                <img src={item.image} alt={item.title} loading="lazy" />
                 {item.featured && <span class="featured-badge">精選</span>}
               </div>
               <div class="card-content">
