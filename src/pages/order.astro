@@ -222,6 +222,7 @@ const logoProduct = products.logo;
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
+    min-width: 0; /* 防止 flex item 超出容器 */
   }
   
   .card {
@@ -229,9 +230,14 @@ const logoProduct = products.logo;
     border-radius: var(--radius-lg);
     padding: var(--space-6);
     box-shadow: var(--shadow);
+    overflow: hidden; /* 防止內容超出 */
   }
   
   @media (max-width: 640px) {
+    .order-content {
+      gap: var(--space-4);
+    }
+    
     .card {
       padding: var(--space-4);
       border-radius: var(--radius);
@@ -244,9 +250,11 @@ const logoProduct = products.logo;
     gap: var(--space-2);
     padding: var(--space-2);
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     scroll-snap-type: x mandatory;
+    max-width: 100%;
   }
   
   .product-tabs::-webkit-scrollbar {
@@ -271,11 +279,6 @@ const logoProduct = products.logo;
   }
   
   @media (max-width: 640px) {
-    .product-tabs {
-      margin: 0 calc(-1 * var(--space-4));
-      padding: var(--space-2) var(--space-4);
-    }
-    
     .product-tab {
       padding: var(--space-2) var(--space-3);
       font-size: 13px;
@@ -395,29 +398,35 @@ const logoProduct = products.logo;
     font-size: 14px;
   }
   
-  /* Style Grid - 修正手機版大小 */
+  /* Style Grid - 手機版固定 2 列 */
   .style-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-3);
   }
   
-  @media (min-width: 480px) {
+  @media (min-width: 540px) {
     .style-grid {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: var(--space-4);
     }
   }
   
   @media (min-width: 768px) {
     .style-grid {
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
     }
   }
   
   @media (min-width: 1024px) {
     .style-grid {
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .style-grid {
+      grid-template-columns: repeat(6, 1fr);
     }
   }
   

@@ -154,28 +154,31 @@ const { plans, selectedPlan = 'basic', productName, serviceNote } = Astro.props;
     box-shadow: var(--shadow);
   }
   
-  /* 選中時的可愛外光暈特效 */
+  /* 選中時的強烈視覺效果 */
   .plan-option.selected {
     border-color: var(--primary);
-    background: rgba(46, 59, 107, 0.02);
+    border-width: 3px;
+    background: linear-gradient(135deg, rgba(46, 59, 107, 0.03) 0%, rgba(78, 205, 196, 0.03) 100%);
     box-shadow: 
-      0 0 0 3px rgba(46, 59, 107, 0.15),
-      0 0 20px rgba(46, 59, 107, 0.1),
-      0 4px 12px rgba(46, 59, 107, 0.15);
-    transform: translateY(-2px);
+      0 0 0 4px rgba(46, 59, 107, 0.12),
+      0 0 30px rgba(46, 59, 107, 0.15),
+      0 8px 20px rgba(46, 59, 107, 0.2);
+    transform: translateY(-4px) scale(1.02);
   }
   
+  /* 推薦方案 - 不要預設外框，用 badge 標示就好 */
   .plan-option.recommended {
-    border-color: var(--teal);
+    /* 移除預設的 teal 外框 */
   }
   
+  /* 推薦方案選中時用 teal 色系 */
   .plan-option.recommended.selected {
     border-color: var(--teal);
-    background: rgba(0, 180, 160, 0.02);
+    background: linear-gradient(135deg, rgba(0, 180, 160, 0.04) 0%, rgba(78, 205, 196, 0.06) 100%);
     box-shadow: 
-      0 0 0 3px rgba(0, 180, 160, 0.2),
-      0 0 20px rgba(0, 180, 160, 0.15),
-      0 4px 12px rgba(0, 180, 160, 0.2);
+      0 0 0 4px rgba(0, 180, 160, 0.15),
+      0 0 30px rgba(0, 180, 160, 0.2),
+      0 8px 20px rgba(0, 180, 160, 0.25);
   }
   
   .recommended-badge {
